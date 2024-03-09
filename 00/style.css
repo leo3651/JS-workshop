@@ -1,0 +1,50 @@
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+body {
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.input-box {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-box:not(:last-of-type) {
+  margin-bottom: 0.5rem;
+}
+
+.input-box:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  width: 7rem;
+  text-align: left;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
+  max-width: 30rem;
+}
+
+.error {
+  text-align: left;
+  margin-top: 2rem;
+  hyphens: auto;
+}
