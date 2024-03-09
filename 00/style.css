@@ -22,14 +22,29 @@ body {
 .input-box {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .input-box:not(:last-of-type) {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .input-box:last-of-type {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+input {
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+input:focus {
+  box-shadow: 0 0rem 2rem rgba(0, 0, 0, 0.3);
+  outline: none;
+  border-bottom: 3px solid orangered;
 }
 
 label {
@@ -40,11 +55,30 @@ label {
 form {
   display: inline-block;
   text-align: center;
-  max-width: 30rem;
+  width: 30rem;
 }
 
 .error {
   text-align: left;
   margin-top: 2rem;
   hyphens: auto;
+  min-height: 20rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  background-color: rgba(0, 86, 139, 0.598);
+  color: darkblue;
+  transition: background-color 0.4s, transform 0.1s;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 139, 0.621);
+  color: lightblue;
+}
+
+.btn:active {
+  transform: translateY(2px);
 }
