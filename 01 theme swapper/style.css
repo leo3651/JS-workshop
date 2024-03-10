@@ -1,0 +1,115 @@
+html {
+  font-size: 62.5%;
+}
+
+:root {
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: var(--transition-duration);
+  overflow: hidden;
+
+  --main-color: orangered;
+  --background-color: white;
+  --text-color: black;
+  --btn-text-color: var(--background-color);
+  --transition-duration: 1s;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.dark {
+  --main-color: #d0d066;
+  --background-color: #333;
+  --text-color: white;
+}
+
+.svg-all {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+
+  background-color: var(--main-color);
+  color: var(--btn-text-color);
+  fill: var(--btn-text-color);
+
+  transition: all var(--transition-duration);
+}
+
+.theme-toggle-btn:hover,
+.theme-toggle-btn:focus {
+  transform: scale(1.1);
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.sun-and-moon-container {
+  display: flex;
+  justify-content: center;
+  --rotation: 0deg;
+  position: absolute;
+  top: 0;
+  height: 200vmin;
+  pointer-events: none;
+
+  transform: rotate(var(--rotation));
+  transition: var(--transition-duration);
+}
+
+.sun,
+.moon {
+  position: absolute;
+  fill: var(--main-color);
+  transition: fill var(--transition-duration),
+    opacity var(--transition-duration);
+  height: 3rem;
+  width: 3rem;
+}
+
+.sun {
+  top: 5%;
+}
+
+.moon {
+  bottom: 5%;
+  transform: rotate(180deg);
+  opacity: 0;
+}
+
+.dark .moon {
+  opacity: 1;
+}
+
+.dark .sun {
+  opacity: 0;
+}

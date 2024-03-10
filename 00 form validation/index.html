@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="index.js"></script>
-    <title>Document</title>
+    <title>Form validation</title>
     <link href="./style.css" rel="stylesheet" />
   </head>
   <body>
     <form action="./index.html" id="form" method="GET">
-      <div>
+      <div class="content">
         <div class="input-box">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Name" />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            autocomplete="off"
+          />
         </div>
         <div class="input-box">
           <label for="password">Password</label>
@@ -21,6 +27,7 @@
             name="password"
             id="password"
             placeholder="Password"
+            autocomplete="off"
           />
         </div>
         <button class="btn" type="submit">Submit</button>

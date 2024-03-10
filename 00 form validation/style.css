@@ -36,7 +36,8 @@ body {
 input {
   border: none;
   border-radius: 3px;
-  padding: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-top: 3px solid transparent;
   border-bottom: 3px solid transparent;
   transition: all 0.3s;
 }
@@ -53,16 +54,21 @@ label {
 }
 
 form {
-  display: inline-block;
   text-align: center;
+  padding: 2rem 0.5rem;
+  display: grid;
+  justify-items: center;
   width: 30rem;
+  height: 100%;
+  grid-template-rows: 0.7fr max-content;
 }
 
 .error {
+  width: 100%;
   text-align: left;
   margin-top: 2rem;
   hyphens: auto;
-  min-height: 20rem;
+  min-height: 7.2rem;
 }
 
 .btn {
@@ -81,4 +87,10 @@ form {
 
 .btn:active {
   transform: translateY(2px);
+}
+
+@media only screen and (max-width: 33em) {
+  html {
+    font-size: 55%;
+  }
 }
