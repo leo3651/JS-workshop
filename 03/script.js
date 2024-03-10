@@ -9,48 +9,46 @@ btn.addEventListener("click", function (e) {
 document.addEventListener("mousemove", function (e) {
   const x = e.pageX;
   const y = e.pageY;
-  console.log("--- NEW ---");
-  console.log("Mouse x: ", x, "Mouse y: ", y);
 
   const btnBox = btn.getBoundingClientRect();
-  console.log(
-    "btnBox x: ",
-    btnBox.x,
-    "btnBox y: ",
-    btnBox.y,
-    "width: ",
-    btnBox.width,
-    "height: ",
-    btnBox.height
-  );
 
-  const horizontalDistance = distaceFromCenter(x, btnBox.x, btnBox.width);
-  console.log("Horizontal distance: ", horizontalDistance);
-
-  const verticalDistance = distaceFromCenter(y, btnBox.y, btnBox.height);
-  console.log("Vertical distance: ", verticalDistance);
+  const horizontalDistance = distaceFromCenter(btnBox.x, x, btnBox.width);
+  const verticalDistance = distaceFromCenter(btnBox.y, y, btnBox.height);
 
   const horizontalOffset = btnBox.width / 2 + OFFSET;
   const verticalOffset = btnBox.height / 2 + OFFSET;
-
-  console.log("Hor Offset: ", horizontalOffset, "Ver Offset: ", verticalOffset);
 
   if (
     Math.abs(horizontalDistance) <= horizontalOffset &&
     Math.abs(verticalDistance) <= verticalOffset
   ) {
     setButtonPosition(
-      btnBox.x + (horizontalOffset / horizontalDistance) * 10,
-      btnBox.y + (verticalOffset / verticalDistance) * 10
+      btnBox.x + (horizontalOffset / horizontalDistance) * 8,
+      btnBox.y + (verticalOffset / verticalDistance) * 8
     );
   }
 });
 
 function setButtonPosition(left, top) {
-  btn.style.top = top;
-  btn.style;
+  const windowBox = document.body.getBoundingClientRect();
+  const btnBox = btn.getBoundingClientRect();
+
+  if (distaceFromCenter(left, windowBox.left, btnBox.width) < 0)
+    left = windowBox.right - btnBox.width - OFFSET;
+
+  if (distaceFromCenter(left, windowBox.right, btnBox.width) > 0)
+    left = windowBox.left + OFFSET;
+
+  if (distaceFromCenter(top, windowBox.top, btnBox.height) < 0)
+    top = windowBox.bottom - btnBox.height - OFFSET;
+
+  if (distaceFromCenter(top, windowBox.bottom, btnBox.height) > 0)
+    top = windowBox.top + OFFSET;
+
+  btn.style.top = `${top / 10}rem`;
+  btn.style.left = `${left / 10}rem`;
 }
 
-function distaceFromCenter(mousePosition, boxPosition, boxSize) {
+function distaceFromCenter(boxPosition, mousePosition, boxSize) {
   return boxPosition - mousePosition + boxSize / 2;
 }
