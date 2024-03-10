@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="script.js"></script>
+    <title>Button</title>
+    <style>
+      html {
+        font-size: 62.5%;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cant-touch-this {
+        position: absolute;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 3px;
+        background-color: lightblue;
+        color: darkblue;
+        font-size: 2rem;
+        font-weight: 600;
+        width: 18rem;
+        height: 3.3rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="cant-touch-this">Can't Touch This</button>
+  </body>
+</html>

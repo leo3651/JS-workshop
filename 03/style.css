@@ -1,0 +1,54 @@
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.tabs {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 3px solid black;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  flex: 1 1 0;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background-color: #aaa;
+}
+
+.tab-content {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.active-tab {
+  background-color: #ccc;
+}
+
+.content {
+  padding: 2rem;
+}
+
+p {
+  margin-left: 1rem;
+}
