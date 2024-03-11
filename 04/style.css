@@ -1,0 +1,36 @@
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ccc;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.selections-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 5rem;
+  cursor: pointer;
+
+  transition: all 0.4s;
+}
+
+button:hover {
+  transform: scale(1.3);
+}
