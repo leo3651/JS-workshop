@@ -1,0 +1,76 @@
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --hue: 400;
+  --saturation: 50%;
+  --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+  --background-color: hsl(var(--hue), var(--saturation), 25%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+
+  font-size: 1.6rem;
+}
+
+.paddle {
+  --position: 50;
+
+  position: absolute;
+  background-color: var(--foreground-color);
+  top: calc(var(--position) * 1vh);
+  width: 1vh;
+  height: 10vh;
+  transform: translateY(-50%);
+}
+
+.left {
+  left: 1vw;
+}
+
+.right {
+  right: 1vw;
+}
+
+.ball {
+  --x: 50;
+  --y: 50;
+
+  position: absolute;
+  height: 3vh;
+  width: 3vh;
+  top: calc(var(--y) * 1vh);
+  left: calc(var(--x) * 1vw);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  background-color: var(--foreground-color);
+}
+
+.score {
+  padding-top: 1vh;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 7vh;
+  color: var(--foreground-color);
+}
+
+.score > * {
+  flex: 1 1 0;
+  padding: 0 3vh;
+}
+
+.score > :first-child {
+  text-align: right;
+  border-right: 2px solid var(--foreground-color);
+}
