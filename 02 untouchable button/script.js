@@ -23,8 +23,8 @@ document.addEventListener("mousemove", function (e) {
     Math.abs(verticalDistance) <= verticalOffset
   ) {
     setButtonPosition(
-      btnBox.x + (horizontalOffset / horizontalDistance) * 8,
-      btnBox.y + (verticalOffset / verticalDistance) * 8
+      btnBox.x + (horizontalOffset / horizontalDistance) * 10,
+      btnBox.y + (verticalOffset / verticalDistance) * 10
     );
   }
 });

@@ -29,8 +29,6 @@ selectionsCont.addEventListener("click", function (e) {
   const computerWinner = isWinner(computerSelected, youSelected);
   const youWinner = isWinner(youSelected, computerSelected);
 
-  console.log(youWinner, computerWinner);
-
   renderResult(computerSelected.emoji, computerWinner);
   renderResult(youSelected.emoji, youWinner);
 
