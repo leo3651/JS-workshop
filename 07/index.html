@@ -20,15 +20,20 @@
       background-color: hsl(261, 88%, 17%);
       color: hsl(261, 88%, 90%);
       text-align: center;
+      padding-top: 3rem;
+      min-height: 100vh;
     }
 
+    h1 {
+      margin-bottom: 1rem;
+    }
     .strength-bar {
       position: relative;
       margin: 0 auto;
       height: 2rem;
       width: 80%;
-      background-color: hsl(261, 88%, 50%);
       border-radius: 20rem;
+      border: 3px solid hsl(261, 88%, 50%);
       overflow: hidden;
     }
 
@@ -38,16 +43,47 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 20%;
-      background-color: hsl(261, 88%, 22%);
+      width: calc(var(--strength-width, 0) * 1%);
+      background-color: hsl(261, 88%, 65%);
       border-radius: 20rem;
+
+      transition: width 0.4s;
+    }
+
+    input {
+      outline: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.3rem;
+      border: 2px solid hsl(261, 88%, 55%);
+      background-color: hsl(261, 88%, 25%);
+      color: white;
+      width: 80%;
+      height: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    input:focus {
+      background-color: hsl(261, 88%, 65%);
+    }
+
+    input::placeholder {
+      color: white;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .reasons > * {
+      margin-top: 0.5rem;
+      color: hsl(261, 88%, 80%);
     }
   </style>
   <body>
     <h1>Password Strength Test</h1>
-    <div class="strength-bar"></div>
-    <input autofocus type="text" placeholder="Password" />
-    <div class="reasons">
+    <div id="strength-bar" class="strength-bar"></div>
+    <input id="password-input" autofocus type="text" placeholder="Password" />
+    <div id="reasons" class="reasons">
+      <div>Reason One</div>
       <div>Reason One</div>
     </div>
   </body>
