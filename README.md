@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Pong game: https://65f0793d9c2c530635419c46--animated-platypus-41da2d.netlify.app/
+
 #### Modal: https://65ef4effb94ae51bebf2f89e--unique-elf-dbdbaa.netlify.app/
 
 #### Rock paper scissors: https://65ef1ca39ed3fb67975c8468--magnificent-churros-68e27a.netlify.app/

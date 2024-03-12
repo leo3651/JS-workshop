@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="script.js"></script>
+  </head>
+
+  <style>
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: hsl(261, 88%, 17%);
+      color: hsl(261, 88%, 90%);
+      text-align: center;
+    }
+
+    .strength-bar {
+      position: relative;
+      margin: 0 auto;
+      height: 2rem;
+      width: 80%;
+      background-color: hsl(261, 88%, 50%);
+      border-radius: 20rem;
+      overflow: hidden;
+    }
+
+    .strength-bar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 20%;
+      background-color: hsl(261, 88%, 22%);
+      border-radius: 20rem;
+    }
+  </style>
+  <body>
+    <h1>Password Strength Test</h1>
+    <div class="strength-bar"></div>
+    <input autofocus type="text" placeholder="Password" />
+    <div class="reasons">
+      <div>Reason One</div>
+    </div>
+  </body>
+</html>
