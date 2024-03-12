@@ -3,7 +3,7 @@ html {
 }
 
 :root {
-  --hue: 400;
+  --hue: 200;
   --saturation: 50%;
   --foreground-color: hsl(var(--hue), var(--saturation), 75%);
   --background-color: hsl(var(--hue), var(--saturation), 25%);

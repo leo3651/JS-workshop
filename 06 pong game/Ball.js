@@ -1,17 +1,10 @@
 const INITIAL_VELOCITY = 0.03;
-const VELOCITY_INCREASE = 0.0000001;
+const VELOCITY_INCREASE = 0.00001;
 
 export default class Ball {
   constructor(ballEl) {
     this.ballEl = ballEl;
     this.reset();
-    this.tester();
-  }
-
-  tester() {
-    console.log(this.x);
-    console.log(window.innerHeight, window.innerWidth);
-    console.log(this.rect());
   }
 
   get x() {
@@ -53,7 +46,7 @@ export default class Ball {
     }
   }
 
-  updatePosition(delta) {
+  updatePosition(delta, paddleRects) {
     this.x += this.direction.x * this.velocity * delta;
     this.y += this.direction.y * this.velocity * delta;
 
@@ -66,13 +59,34 @@ export default class Ball {
       this.direction.y *= -1;
     }
 
-    // hit left/right ?
-    if (ballRect.left <= 0 || ballRect.right >= window.innerWidth) {
+    if (paddleRects.some((paddle) => isCollision(paddle, ballRect)))
       this.direction.x *= -1;
-    }
+
+    // if (
+    //   ballRect.bottom <= playerPaddleRect.bottom &&
+    //   ballRect.top >= playerPaddleRect.top &&
+    //   ballRect.left <= playerPaddleRect.right
+    // )
+    //   this.direction.x *= -1;
+
+    // if (
+    //   ballRect.bottom <= computerPaddleRect.bottom &&
+    //   ballRect.top >= computerPaddleRect.top &&
+    //   ballRect.right >= computerPaddleRect.left
+    // )
+    //   this.direction.x *= -1;
   }
 }
 
 function randomNumberBetween(min, max) {
   return Math.random() * (max - min) + min;
+}
+
+function isCollision(paddleRect, ballRect) {
+  return (
+    ballRect.top >= paddleRect.top &&
+    ballRect.bottom <= paddleRect.bottom &&
+    ballRect.right >= paddleRect.left &&
+    ballRect.left <= paddleRect.right
+  );
 }
