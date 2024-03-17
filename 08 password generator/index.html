@@ -4,32 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="script.js"></script>
-    <link href="style.css" />
+    <link href="style.css" rel="stylesheet" />
     <title>Password generator</title>
   </head>
+
   <body>
     <div class="container">
       <h1>Password Generator</h1>
       <h2>Password</h2>
 
-      <label>Number of Characters</label>
-      <input type="range" min="1" max="40" />
-      <input type="number" min="1" max="40" />
+      <form class="form-grid">
+        <label for="number-of-characters">Number of Characters</label>
+        <div class="amount">
+          <input type="range" min="1" max="40" />
+          <input type="number" min="1" max="40" id="number-of-characters" />
+        </div>
 
-      <div>
         <label for="include-uppercase">Include Uppercase</label>
         <input type="checkbox" id="include-uppercase" />
-      </div>
 
-      <div>
         <label for="include-numbers">Include Numbers</label>
         <input type="checkbox" id="include-numbers" />
-      </div>
 
-      <div>
         <label for="include-symbols">Include Symbols</label>
         <input type="checkbox" id="include-symbols" />
-      </div>
+
+        <button class="btn">Generate Password</button>
+      </form>
     </div>
   </body>
 </html>
