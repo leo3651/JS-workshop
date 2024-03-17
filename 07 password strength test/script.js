@@ -32,6 +32,8 @@ function calcPasswordStrength(password) {
   weaknesses.push(lowerCaseWeakness(password));
   weaknesses.push(upperCaseWeakness(password));
   weaknesses.push(numberWeakness(password));
+  weaknesses.push(specialCharacterWeakness(password));
+  weaknesses.push(repeatCharactersWeakness(password));
 
   return weaknesses;
 }
@@ -82,14 +84,19 @@ function numberWeakness(password) {
   return characterTypeWeakness(password, /[0-9]/g, "numbers");
 }
 
-let timer;
-
-function logOut() {
-  timer = setInterval(() => console.log(new Date()), 4000);
-  return timer;
+function specialCharacterWeakness(password) {
+  return characterTypeWeakness(
+    password,
+    /[^0-9a-zA-Z\s]/g,
+    "special characters"
+  );
 }
-timer = logOut();
-console.log(timer);
-clearInterval(timer);
-console.log(timer);
-console.log(Boolean(timer));
+
+function repeatCharactersWeakness(password) {
+  const matches = password.match(/(.)\1/g) || [];
+  if (matches.length > 0)
+    return {
+      message: "You repeated characters",
+      negativePoints: matches.length * 10,
+    };
+}

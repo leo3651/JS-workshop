@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="script.js"></script>
+    <link href="style.css" />
+    <title>Password generator</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Password Generator</h1>
+      <h2>Password</h2>
+
+      <label>Number of Characters</label>
+      <input type="range" min="1" max="40" />
+      <input type="number" min="1" max="40" />
+
+      <div>
+        <label for="include-uppercase">Include Uppercase</label>
+        <input type="checkbox" id="include-uppercase" />
+      </div>
+
+      <div>
+        <label for="include-numbers">Include Numbers</label>
+        <input type="checkbox" id="include-numbers" />
+      </div>
+
+      <div>
+        <label for="include-symbols">Include Symbols</label>
+        <input type="checkbox" id="include-symbols" />
+      </div>
+    </div>
+  </body>
+</html>
