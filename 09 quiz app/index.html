@@ -9,18 +9,24 @@
   </head>
   <body class="correct">
     <div class="container">
-      <h1>Question?</h1>
+      <div id="question-container" class="hide">
+        <h1 id="question">Question?</h1>
 
-      <div class="answers-grid">
-        <button class="btn correct">Answer 1</button>
-        <button class="btn wrong">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
+        <div class="answers-grid">
+          <button class="btn correct"><span>Answer 1</span></button>
+          <button class="btn wrong"><span>Answer 2</span></button>
+          <button class="btn"><span>Answer 3</span></button>
+          <button class="btn"><span>Answer 4</span></button>
+        </div>
       </div>
 
       <div class="controls-container">
-        <button class="btn">Next</button>
-        <button class="btn">Start</button>
+        <button id="next-btn" class="btn btn-control hide">
+          <span>Next</span>
+        </button>
+        <button id="start-btn" class="btn btn-control">
+          <span>Start</span>
+        </button>
       </div>
     </div>
   </body>

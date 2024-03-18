@@ -8,6 +8,12 @@ html {
   font-size: 62.5%;
 }
 
+:root {
+  --correct-gradient: linear-gradient(to bottom right, lightgreen, darkgreen);
+  --wrong-gradient: linear-gradient(to bottom right, red, darkred);
+  --neutral-gradient: linear-gradient(to bottom right, lightblue, darkblue);
+}
+
 body {
   font-size: 1.6rem;
   line-height: 1.5;
@@ -16,13 +22,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom right, lightblue, darkblue);
+  background-image: var(--neutral-gradient);
 }
 
 h1 {
   margin-bottom: 2rem;
   color: transparent;
-  background-image: linear-gradient(to bottom right, lightblue, darkblue);
+  background-image: var(--neutral-gradient);
   -webkit-background-clip: text;
 }
 
@@ -31,7 +37,7 @@ h1 {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.3);
-  width: 50rem;
+  width: 70rem;
 }
 
 .answers-grid {
@@ -41,37 +47,82 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.btn {
-  padding: 2rem;
-  border: none;
-  outline: none;
-  border-radius: 0.3rem;
-  background-image: linear-gradient(to bottom right, lightblue, darkblue);
-  color: white;
-  font-weight: 700;
-  font-size: 3rem;
-  cursor: pointer;
-}
-
 .controls-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-body.wrong {
-  background-image: linear-gradient(to bottom right, red, darkred);
+.btn {
+  position: relative;
+  padding: 2rem;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  background-image: var(--neutral-gradient);
+  color: white;
+  font-weight: 700;
+  font-size: 3rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.125s;
 }
 
-body.correct {
-  background-image: linear-gradient(to bottom right, lightgreen, darkgreen);
+.btn-control {
+  font-size: 5rem;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn::before {
+  background-image: linear-gradient(
+    to bottom right,
+    lightblue 50%,
+    lightblue 50%
+  );
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  border-radius: 1rem;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  transform: translate(-100%, -100%);
+
+  transition: all 0.4s;
+}
+
+.btn:hover::before {
+  transform: translate(0, 0);
+}
+
+span {
+  position: relative;
+  z-index: 111;
+  transition: all 0.4s;
+}
+
+.btn:hover span {
+  color: transparent;
+  background-image: linear-gradient(to bottom right, darkblue, darkblue);
+  -webkit-background-clip: text;
+}
+
+.wrong {
+  background-image: var(--wrong-gradient);
+}
+
+.correct {
+  background-image: var(--correct-gradient);
 }
 
 .btn.correct {
-  background-image: linear-gradient(to bottom right, lightgreen, darkgreen);
   color: black;
 }
 
-.btn.wrong {
-  background-image: linear-gradient(to bottom right, red, darkred);
+.hide {
+  display: none;
 }
