@@ -40,6 +40,11 @@ h1 {
   width: 70rem;
 }
 
+.container.max-width {
+  width: auto;
+  max-width: 70rem;
+}
+
 .answers-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
