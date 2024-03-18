@@ -84,8 +84,8 @@ h1 {
 .btn::before {
   background-image: linear-gradient(
     to bottom right,
-    lightblue 50%,
-    lightblue 50%
+    rgba(173, 216, 230, 0.8) 50%,
+    rgba(173, 216, 230, 0.8) 50%
   );
   position: absolute;
   content: "";
@@ -130,4 +130,19 @@ span {
 
 .hide {
   display: none;
+}
+
+.btn.correct::before,
+.btn.wrong::before {
+  background-image: none;
+}
+
+.btn.correct:hover span {
+  background-image: none;
+  color: black;
+}
+
+.btn.wrong:hover span {
+  background-image: none;
+  color: white;
 }
