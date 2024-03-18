@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Password generator: https://65f7435c0252f1be593de70f--cheery-sunburst-993368.netlify.app/
+
 #### Password strength test: https://65f7064da5568b928b3c5362--incomparable-conkies-6510c9.netlify.app/
 
 #### Pong game: https://65f0793d9c2c530635419c46--animated-platypus-41da2d.netlify.app/
