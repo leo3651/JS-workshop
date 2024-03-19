@@ -16,29 +16,30 @@
   <body>
     <div class="container">
       <form>
-        <div class="form-input">
-          <select class="select">
-            <option>GET</option>
-            <option>POST</option>
-            <option>PUT</option>
-            <option>PATCH</option>
-            <option>DELETE</option>
-          </select>
-          <input
-            class="url-input"
-            type="url"
-            placeholder="https://example.com"
-          />
-          <button class="btn-send">Send</button>
-        </div>
+        <select class="select">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>PATCH</option>
+          <option>DELETE</option>
+        </select>
+        <input class="url-input" type="url" placeholder="https://example.com" />
+        <button class="btn-send">Send</button>
       </form>
 
       <div class="tabs-container">
-        <ul>
-          <li>Query Params</li>
-          <li>Headres</li>
-          <li>JSON</li>
+        <ul class="list">
+          <li class="list-item active-tab" data-tab-content="query-params">
+            Query Params
+          </li>
+          <li class="list-item" data-tab-content="headers">Headres</li>
+          <li class="list-item" data-tab-content="json">JSON</li>
+          <li></li>
         </ul>
+
+        <div id="query-params" class="results active-tab-content"></div>
+        <div id="headers" class="results"></div>
+        <div id="json" class="results"></div>
       </div>
     </div>
   </body>
