@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
+
   <body>
     <div class="container">
+      <!-- FORM  -->
       <form>
         <select class="select">
           <option>GET</option>
@@ -27,7 +29,9 @@
         <button class="btn-send">Send</button>
       </form>
 
+      <!-- TABS CONTAINER -->
       <div class="tabs-container">
+        <!-- TABS -->
         <ul class="list">
           <li class="list-item active-tab" data-tab-content="query-params">
             Query Params
@@ -37,10 +41,37 @@
           <li></li>
         </ul>
 
-        <div id="query-params" class="results active-tab-content"></div>
+        <!-- TABS CONTENTS -->
+
+        <!-- QUERY PARAMS -->
+        <div id="query-params" class="results active-tab-content">
+          <div class="key-value-pairs">
+            <input class="input key-input" type="text" placeholder="Key" />
+            <input class="input value-input" type="text" placeholder="Value" />
+            <button class="btn danger">Remove</button>
+          </div>
+          <div class="key-value-pairs">
+            <input class="input key-input" type="text" placeholder="Key" />
+            <input class="input value-input" type="text" placeholder="Value" />
+            <button class="btn danger">Remove</button>
+          </div>
+          <button class="btn success">Add</button>
+        </div>
+
+        <!-- HEADERS -->
         <div id="headers" class="results"></div>
+
+        <!-- JSON -->
         <div id="json" class="results"></div>
       </div>
     </div>
+
+    <template>
+      <div class="key-value-pairs">
+        <input class="input key-input" type="text" placeholder="Key" />
+        <input class="input value-input" type="text" placeholder="Value" />
+        <button class="btn danger">Remove</button>
+      </div>
+    </template>
   </body>
 </html>
