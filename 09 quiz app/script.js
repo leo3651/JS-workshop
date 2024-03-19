@@ -49,6 +49,7 @@ function setNextQuestion(shuffeledQuestionsArray) {
 function checkAnswer(e) {
   const btnClicked = e.target.closest(".btn");
   if (!btnClicked) return;
+  answersContainer.removeEventListener("click", checkAnswer);
 
   const correct = btnClicked.dataset.correct;
 
@@ -56,7 +57,6 @@ function checkAnswer(e) {
   Array.from(answersContainer.children).forEach((answer) =>
     setStyle(answer, answer.dataset.correct)
   );
-  answersContainer.removeEventListener("click", checkAnswer);
 
   if (currentQuestionIndex + 1 > questions.length - 1) {
     btnStart.firstElementChild.innerText = "Restart";
