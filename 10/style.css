@@ -24,7 +24,7 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 70%;
+  max-width: 80%;
   padding: 0 1rem;
 }
 
@@ -183,4 +183,14 @@ li {
 .danger:hover {
   background-color: darkred;
   border: 1px solid darkred;
+}
+
+.response {
+  margin-top: 5rem;
+}
+
+.response-overview {
+  margin-top: 1rem;
+  display: flex;
+  gap: 3rem;
 }

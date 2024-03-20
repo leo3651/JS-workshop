@@ -63,6 +63,49 @@
         <!-- JSON -->
         <div id="json" class="results"></div>
       </div>
+
+      <div class="response">
+        <h2>Response</h2>
+        <div class="response-overview">
+          <div>Status: <span data-status></span></div>
+          <div>Time: <span data-time></span>ms</div>
+          <div>Size: <span data-size></span></div>
+        </div>
+
+        <div class="tabs-container">
+          <!-- TABS -->
+          <ul class="list list-response">
+            <li
+              class="list-item list-item-response active-tab"
+              data-tab-content="body"
+            >
+              Body
+            </li>
+            <li
+              class="list-item list-item-response"
+              data-tab-content="headers-2"
+            >
+              Headres
+            </li>
+            <li class="list-item list-item-response"></li>
+            <li></li>
+          </ul>
+
+          <!-- TABS CONTENTS -->
+
+          <!-- BODY -->
+          <div id="body" class="results results-response active-tab-content">
+            <div id="body-content"></div>
+          </div>
+
+          <!-- HEADERS -->
+          <div id="headers-2" class="results results-response">
+            <div id="headers-content-2"></div>
+          </div>
+
+          <div class="results results-response"></div>
+        </div>
+      </div>
     </div>
 
     <template>
