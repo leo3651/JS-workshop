@@ -10,6 +10,10 @@ html {
   box-sizing: border-box;
 }
 
+:root {
+  --border: #d3d3d3;
+}
+
 *:focus {
   box-shadow: 0 0 1rem 0.2rem rgba(82, 78, 183, 0.3);
   position: relative;
@@ -38,7 +42,7 @@ form {
 .url-input,
 .btn-send,
 .select {
-  border: 1px solid #f4f4f4;
+  border: 1px solid var(--border);
   padding: 0.3rem 0.8rem;
   border-radius: 3px;
   outline: none;
@@ -84,13 +88,13 @@ form {
 }
 
 .list > * {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid var(--border);
   grid-column: span 3;
   text-align: center;
 }
 
 .active-tab {
-  border: 1px solid #f4f4f4;
+  border: 1px solid var(--border);
   border-bottom: none;
   color: #8a8a8a;
 
@@ -104,7 +108,7 @@ li {
 
 .results {
   display: none;
-  border: 1px solid #f4f4f4;
+  border: 1px solid var(--border);
   border-top: none;
   border-radius: 3px;
   border-top-left-radius: 0;
@@ -117,7 +121,9 @@ li {
 
 #headers,
 #json,
-#query-params {
+#query-params,
+#headers-2,
+#body {
   padding: 3rem 1.5rem;
 }
 
@@ -135,7 +141,7 @@ li {
 .input {
   flex: 1 1 0;
   padding: 1rem 2rem;
-  border: 1px solid #f4f4f4;
+  border: 1px solid var(--border);
   border-radius: 0;
   outline: none;
 }
@@ -191,6 +197,7 @@ li {
 
 .response-overview {
   margin-top: 1rem;
+  margin-bottom: 3rem;
   display: flex;
   gap: 3rem;
 }

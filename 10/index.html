@@ -47,23 +47,23 @@
         </ul>
 
         <!-- TABS CONTENTS -->
-
-        <!-- QUERY PARAMS -->
+        <!-- query params -->
         <div id="query-params" class="results active-tab-content">
           <div id="query-params-content"></div>
           <button class="btn success">Add</button>
         </div>
 
-        <!-- HEADERS -->
+        <!-- headers -->
         <div id="headers" class="results">
           <div id="headers-content"></div>
           <button class="btn success">Add</button>
         </div>
 
-        <!-- JSON -->
+        <!-- json -->
         <div id="json" class="results"></div>
       </div>
 
+      <!-- RESPONSE -->
       <div class="response">
         <h2>Response</h2>
         <div class="response-overview">
@@ -72,38 +72,29 @@
           <div>Size: <span data-size></span></div>
         </div>
 
-        <div class="tabs-container">
+        <!-- RESPONSE TABS CONTAINER -->
+        <div class="tabs-container-response">
           <!-- TABS -->
-          <ul class="list list-response">
-            <li
-              class="list-item list-item-response active-tab"
-              data-tab-content="body"
-            >
-              Body
-            </li>
-            <li
-              class="list-item list-item-response"
-              data-tab-content="headers-2"
-            >
-              Headres
-            </li>
-            <li class="list-item list-item-response"></li>
+          <ul class="list">
+            <li class="list-item active-tab" data-tab-content="body">Body</li>
+            <li class="list-item" data-tab-content="headers-2">Headres</li>
+            <li class="list-item"></li>
             <li></li>
           </ul>
 
           <!-- TABS CONTENTS -->
-
-          <!-- BODY -->
-          <div id="body" class="results results-response active-tab-content">
+          <!-- body -->
+          <div id="body" class="results active-tab-content">
             <div id="body-content"></div>
           </div>
 
-          <!-- HEADERS -->
-          <div id="headers-2" class="results results-response">
+          <!-- headers -->
+          <div id="headers-2" class="results">
             <div id="headers-content-2"></div>
           </div>
 
-          <div class="results results-response"></div>
+          <!--  -->
+          <div class="results"></div>
         </div>
       </div>
     </div>

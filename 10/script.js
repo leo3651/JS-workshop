@@ -3,31 +3,25 @@ import axios from "axios";
 //////////////////////////////
 /////// tabs functionality
 //////////////////////////////
-const tabsContainer = document.querySelector(".list");
-const tabsContainerResponse = document.querySelector(".list-response");
-
-const tabs = document.querySelectorAll(".list-item");
-const tabsResponse = document.querySelectorAll(".list-item-response");
-
-const tabContents = document.querySelectorAll(".results");
-const tabContentsResponse = document.querySelectorAll(".results-response");
-
-tabsContainer.addEventListener("click", switchTabs.bind([tabs, tabContents]));
-
-tabsContainerResponse.addEventListener(
-  "click",
-  switchTabs.bind([tabsResponse, tabContentsResponse])
+const tabsContainer = document.querySelector(".tabs-container");
+const tabsContainerResponse = document.querySelector(
+  ".tabs-container-response"
 );
 
-function switchTabs(e) {
-  const [tabs, tabContents] = this;
+tabsContainer.addEventListener("click", switchTabs);
+tabsContainerResponse.addEventListener("click", switchTabs);
 
+function switchTabs(e) {
   const tab = e.target.closest(".list-item");
   const tabContent = document.getElementById(
-    e.target.closest(".list-item").dataset.tabContent
+    e.target.closest(".list-item")?.dataset.tabContent
   );
+
   if (!tab) return;
   if (!tabContent) return;
+
+  const tabs = e.currentTarget.querySelectorAll(".list-item");
+  const tabContents = e.currentTarget.querySelectorAll(".results");
 
   tabs.forEach((tab, index) => {
     tab.classList.remove("active-tab");
