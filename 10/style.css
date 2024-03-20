@@ -156,6 +156,11 @@ li {
   border: 1px solid currentColor;
   padding: 1rem 2rem;
   font-size: 1.6rem;
+  transition: all 0.25s;
+}
+
+.btn:hover {
+  color: white;
 }
 
 .success {
@@ -164,8 +169,18 @@ li {
   margin-top: 2rem;
 }
 
+.success:hover {
+  background-color: darkgreen;
+  border: 1px solid darkgreen;
+}
+
 .danger {
   color: darkred;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.danger:hover {
+  background-color: darkred;
+  border: 1px solid darkred;
 }

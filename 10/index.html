@@ -17,15 +17,20 @@
   <body>
     <div class="container">
       <!-- FORM  -->
-      <form>
-        <select class="select">
+      <form data-form>
+        <select class="select" data-method>
           <option>GET</option>
           <option>POST</option>
           <option>PUT</option>
           <option>PATCH</option>
           <option>DELETE</option>
         </select>
-        <input class="url-input" type="url" placeholder="https://example.com" />
+        <input
+          class="url-input"
+          type="url"
+          placeholder="https://example.com"
+          data-url
+        />
         <button class="btn-send">Send</button>
       </form>
 
@@ -45,21 +50,15 @@
 
         <!-- QUERY PARAMS -->
         <div id="query-params" class="results active-tab-content">
-          <div class="key-value-pairs">
-            <input class="input key-input" type="text" placeholder="Key" />
-            <input class="input value-input" type="text" placeholder="Value" />
-            <button class="btn danger">Remove</button>
-          </div>
-          <div class="key-value-pairs">
-            <input class="input key-input" type="text" placeholder="Key" />
-            <input class="input value-input" type="text" placeholder="Value" />
-            <button class="btn danger">Remove</button>
-          </div>
+          <div id="query-params-content"></div>
           <button class="btn success">Add</button>
         </div>
 
         <!-- HEADERS -->
-        <div id="headers" class="results"></div>
+        <div id="headers" class="results">
+          <div id="headers-content"></div>
+          <button class="btn success">Add</button>
+        </div>
 
         <!-- JSON -->
         <div id="json" class="results"></div>
