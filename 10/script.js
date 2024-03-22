@@ -67,6 +67,20 @@ function createKeyValuePair(element) {
 const form = document.querySelector("[data-form]");
 const url = document.querySelector("[data-url]");
 const method = document.querySelector("[data-method]");
+const responseHeadersContent = document.getElementById(
+  "response-headers-content"
+);
+
+axios.interceptors.request.use((request) => {
+  request.customData = request.customData || {};
+  request.customData.startTime = new Date().getTime();
+  console.log(request);
+  return request;
+});
+
+axios.interceptors.response.use(updateEndTime, (e) =>
+  Promise.reject(updateEndTime(e.response))
+);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -79,8 +93,36 @@ form.addEventListener("submit", (e) => {
     method: method.value,
     params: keyValuePairsToObject(queryParamsContent),
     headers: keyValuePairsToObject(headersContent),
-  }).then((response) => console.log(response));
+  })
+    .catch((err) => err)
+    .then((response) => {
+      console.log(response);
+      updateResponseDetails(response);
+      updateResponseHeaders(response.headers);
+    });
 });
+
+function updateResponseHeaders(headers) {
+  responseHeadersContent.innerHTML = "";
+
+  Object.entries(headers).forEach(([key, value]) => {
+    const keyElement = document.createElement("div");
+    keyElement.textContent = key;
+
+    const valueElement = document.createElement("div");
+    valueElement.textContent = value;
+
+    responseHeadersContent.append(keyElement);
+    responseHeadersContent.append(valueElement);
+  });
+}
+
+function updateResponseDetails(response) {
+  console.log(response);
+  document.querySelector("[data-status]").textContent = response.status;
+  document.querySelector("[data-time]").textContent =
+    response.customData.timePassed;
+}
 
 function keyValuePairsToObject(contentContainer) {
   const pairs = contentContainer.querySelectorAll(".key-value-pairs");
@@ -92,4 +134,12 @@ function keyValuePairsToObject(contentContainer) {
     if (!key) return acc;
     return { ...acc, [key]: value };
   }, {});
+}
+
+function updateEndTime(response) {
+  console.log(response);
+  response.customData = response.customData || {};
+  response.customData.timePassed =
+    new Date().getTime() - response.config.customData.startTime;
+  return response;
 }

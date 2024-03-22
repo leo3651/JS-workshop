@@ -24,6 +24,8 @@ body {
   font-size: 1.6rem;
   line-height: 1.5;
   padding: 3rem 1rem;
+  min-height: 100vh;
+  width: 100vw;
 }
 
 .container {
@@ -67,6 +69,7 @@ form {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border: none;
+  cursor: pointer;
 
   background-color: rgb(0, 110, 255);
   color: white;
@@ -106,6 +109,10 @@ li {
   padding: 0.3rem 2rem;
 }
 
+li[data-tab-content] {
+  cursor: pointer;
+}
+
 .results {
   display: none;
   border: 1px solid var(--border);
@@ -122,7 +129,7 @@ li {
 #headers,
 #json,
 #query-params,
-#headers-2,
+#response-headers,
 #body {
   padding: 3rem 1.5rem;
 }
@@ -167,6 +174,7 @@ li {
 
 .btn:hover {
   color: white;
+  cursor: pointer;
 }
 
 .success {
@@ -200,4 +208,12 @@ li {
   margin-bottom: 3rem;
   display: flex;
   gap: 3rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 5rem;
+  row-gap: 1rem;
+  align-items: center;
 }
