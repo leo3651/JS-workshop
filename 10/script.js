@@ -1,4 +1,6 @@
 import axios from "axios";
+import prettyBytes from "pretty-bytes";
+import setupEditors from "./setupEditor";
 
 //////////////////////////////
 /////// tabs functionality
@@ -82,8 +84,19 @@ axios.interceptors.response.use(updateEndTime, (e) =>
   Promise.reject(updateEndTime(e.response))
 );
 
+const { requestEditor, updateResponseEditor } = setupEditors();
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  let data;
+  try {
+  } catch (err) {
+    alert("JSON malformed");
+    return;
+  }
+
+  console.log(requestEditor.data);
 
   console.log(keyValuePairsToObject(queryParamsContent));
   console.log(keyValuePairsToObject(headersContent));
@@ -96,9 +109,9 @@ form.addEventListener("submit", (e) => {
   })
     .catch((err) => err)
     .then((response) => {
-      console.log(response);
       updateResponseDetails(response);
       updateResponseHeaders(response.headers);
+      updateResponseEditor(response.data);
     });
 });
 
@@ -118,10 +131,13 @@ function updateResponseHeaders(headers) {
 }
 
 function updateResponseDetails(response) {
-  console.log(response);
   document.querySelector("[data-status]").textContent = response.status;
   document.querySelector("[data-time]").textContent =
     response.customData.timePassed;
+  document.querySelector("[data-size]").textContent = prettyBytes(
+    JSON.stringify(response.data).length +
+      JSON.stringify(response.headers).length
+  );
 }
 
 function keyValuePairsToObject(contentContainer) {
