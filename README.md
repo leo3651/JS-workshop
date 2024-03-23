@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Postman clone: https://65ff1e1afe518835b575a157--capable-marzipan-4d7f8c.netlify.app/
+
 #### Password generator: https://65f7435c0252f1be593de70f--cheery-sunburst-993368.netlify.app/
 
 #### Password strength test: https://65f7064da5568b928b3c5362--incomparable-conkies-6510c9.netlify.app/

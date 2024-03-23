@@ -66,6 +66,7 @@ function createKeyValuePair(element) {
 //////////////////////////////
 /////// axios
 //////////////////////////////
+const responseContainer = document.querySelector(".response");
 const form = document.querySelector("[data-form]");
 const url = document.querySelector("[data-url]");
 const method = document.querySelector("[data-method]");
@@ -88,24 +89,23 @@ const { requestEditor, updateResponseEditor } = setupEditors();
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  if (!url.value) return;
+  responseContainer.classList.remove("hide");
 
   let data;
   try {
+    data = JSON.parse(requestEditor.state.doc.toString()) || null;
   } catch (err) {
     alert("JSON malformed");
     return;
   }
-
-  console.log(requestEditor.data);
-
-  console.log(keyValuePairsToObject(queryParamsContent));
-  console.log(keyValuePairsToObject(headersContent));
 
   axios({
     url: url.value,
     method: method.value,
     params: keyValuePairsToObject(queryParamsContent),
     headers: keyValuePairsToObject(headersContent),
+    data,
   })
     .catch((err) => err)
     .then((response) => {
