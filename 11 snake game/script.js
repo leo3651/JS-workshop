@@ -1,4 +1,5 @@
 import { SNAKE_SPEED, updateSnake, drawSnake } from "./snake.js";
+import { directions } from "./inputDirections.js";
 
 let lastRender = 0;
 const gameBoard = document.getElementById("game-board");
@@ -19,29 +20,9 @@ function updateFrame(time) {
 window.requestAnimationFrame(updateFrame);
 
 function update() {
-  updateSnake();
+  updateSnake(directions);
 }
 
 function draw() {
   drawSnake(gameBoard);
 }
-
-export const directions = { x: 0, y: 0 };
-window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") {
-    directions.x = -1;
-    directions.y = 0;
-  }
-  if (e.key === "ArrowRight") {
-    directions.x = 1;
-    directions.y = 0;
-  }
-  if (e.key === "ArrowUp") {
-    directions.x = 0;
-    directions.y = -1;
-  }
-  if (e.key === "ArrowDown") {
-    directions.x = 0;
-    directions.y = 1;
-  }
-});
