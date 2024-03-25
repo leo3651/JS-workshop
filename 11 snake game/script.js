@@ -20,11 +20,14 @@ window.requestAnimationFrame(updateFrame);
 
 function update() {
   const directions = getInputDirections();
-  updateFood(gameBoard);
+
   updateSnake(directions);
+  updateFood(gameBoard);
 }
 
 function draw() {
-  drawSnake(gameBoard);
+  gameBoard.innerHTML = "";
+
   drawFood(gameBoard);
+  drawSnake(gameBoard);
 }

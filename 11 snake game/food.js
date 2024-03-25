@@ -1,11 +1,14 @@
-import { onSnake } from "./snake.js";
+import { onSnake, expandSnake } from "./snake.js";
 
-const food = { x: 11, y: 3 };
+const EXPANSION_RATE = 5;
+const GRID_SIZE = 21;
+
+let food = getRandomPosition();
 
 export function updateFood(gameBoard) {
   if (onSnake(food)) {
-    food.x = 20;
-    food.y = 20;
+    expandSnake(EXPANSION_RATE);
+    food = getRandomPosition();
   }
 }
 
@@ -16,4 +19,18 @@ export function drawFood(gameBoard) {
   foodElement.style.gridColumn = food.x;
 
   gameBoard.append(foodElement);
+}
+
+function getRandomPosition() {
+  let newFoodPosition = generateNewPosition();
+  while (onSnake(newFoodPosition)) newFoodPosition = generateNewPosition();
+
+  return newFoodPosition;
+}
+
+function generateNewPosition() {
+  return {
+    x: Math.floor(Math.random() * GRID_SIZE) + 1,
+    y: Math.floor(Math.random() * GRID_SIZE) + 1,
+  };
 }
