@@ -1,6 +1,6 @@
 export const SNAKE_SPEED = 2;
 
-const snakeBody = [{ x: 11, y: 11 }];
+export const snakeBody = [{ x: 11, y: 11 }];
 
 export function updateSnake(directions) {
   if (snakeBody.length > 1) {
@@ -29,15 +29,23 @@ export function drawSnake(gameBoard) {
   });
 }
 
-const equalPosition = function (snakeBodyElement, food) {
-  return snakeBodyElement.x === food.x && snakeBodyElement.y === food.y;
-};
+const equalPosition = (snakeBodyElement, position) =>
+  snakeBodyElement.x === position.x && snakeBodyElement.y === position.y;
 
-export const onSnake = function (food) {
-  return snakeBody.some((snakeBodyElement) =>
-    equalPosition(snakeBodyElement, food)
-  );
-};
+export function onSnake(position, { ignoreHead = false } = {}) {
+  return snakeBody.some((snakeBodyElement, index) => {
+    console.log(position, snakeBodyElement);
+    console.log(snakeBody);
+    console.log("equal position:", equalPosition(snakeBodyElement, position));
+    console.log("ignore head and index === ", ignoreHead && index === 0);
+    if (ignoreHead && index === 0) return false;
+    return equalPosition(snakeBodyElement, position);
+  });
+}
+
+export function snakeAte(foodPosition) {
+  return equalPosition(snakeBody[0], foodPosition);
+}
 
 export function expandSnake(expansionRate) {
   for (let i = 0; i < expansionRate; i++) {
