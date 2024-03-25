@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Snake game: https://6601cb6f98c6af3108d7873b--melodic-conkies-81a5e8.netlify.app/
+
 #### Postman clone: https://65ff1e1afe518835b575a157--capable-marzipan-4d7f8c.netlify.app/
 
 #### Password generator: https://65f7435c0252f1be593de70f--cheery-sunburst-993368.netlify.app/
