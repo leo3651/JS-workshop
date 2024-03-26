@@ -29,6 +29,7 @@ body {
   --bird-size: 60px;
   --bird-top: -1000;
 
+  /* transform: translateY(-50%); */
   height: var(--bird-size);
   width: var(--bird-size);
   border-radius: 50%;
