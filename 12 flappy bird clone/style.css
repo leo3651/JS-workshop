@@ -38,3 +38,28 @@ body {
   left: var(--bird-size);
   top: calc(var(--bird-top) * 1px);
 }
+
+.pipe {
+  --pipe-width: 120;
+  --pipe-left: 300;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--pipe-width) * 1px);
+  left: calc(var(--pipe-left) * 1px);
+}
+
+.pipe > * {
+  position: absolute;
+  width: 100%;
+  background-color: green;
+}
+
+.pipe .segment-top {
+  top: 0;
+  height: 300px;
+}
+
+.pipe .segment-bottom {
+  height: 200px;
+}
