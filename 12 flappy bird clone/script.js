@@ -1,7 +1,12 @@
 "use strict";
 
 import { updateBird, setInitialPositionOfBird, getBirdRect } from "./bird.js";
-import { setupPipe, updatePipe } from "./pipe.js";
+import {
+  setupPipe,
+  updatePipe,
+  getPassedPipesCount,
+  getPipesRects,
+} from "./pipe.js";
 
 document.addEventListener("keypress", handleStart, { once: true });
 
@@ -32,7 +37,7 @@ function handleStart(e) {
 function handleLose() {
   subtitle.classList.remove("hide");
   title.classList.remove("hide");
-  subtitle.textContent = `${0} Pipes`;
+  subtitle.textContent = `${getPassedPipesCount()} Pipes`;
   setTimeout(() => {
     document.addEventListener("keypress", handleStart, { once: true });
   }, 500);
@@ -40,5 +45,20 @@ function handleLose() {
 
 function checkLose() {
   const birdRect = getBirdRect();
-  return birdRect.bottom >= window.innerHeight || birdRect.top <= 0;
+  const outsideWorld =
+    birdRect.bottom >= window.innerHeight || birdRect.top <= 0;
+
+  if (isCollision(birdRect)) return true;
+
+  return outsideWorld;
+}
+
+function isCollision(birdRect) {
+  return getPipesRects().some(
+    (pipeRect) =>
+      birdRect.top < pipeRect.bottom &&
+      birdRect.bottom > pipeRect.top &&
+      birdRect.left < pipeRect.right &&
+      birdRect.right > pipeRect.left
+  );
 }
