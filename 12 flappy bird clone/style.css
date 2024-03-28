@@ -42,6 +42,8 @@ body {
 .pipe {
   --pipe-width: 120;
   --pipe-left: 300;
+  --bottom-of-top-pipe: 700;
+  --pipe-hole: 200;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -49,17 +51,20 @@ body {
   left: calc(var(--pipe-left) * 1px);
 }
 
-.pipe > * {
+.pipe > .segment {
   position: absolute;
   width: 100%;
   background-color: green;
 }
 
-.pipe .segment-top {
+.pipe .top {
   top: 0;
-  height: 300px;
+  bottom: calc(var(--bottom-of-top-pipe) * 1px);
 }
 
-.pipe .segment-bottom {
-  height: 200px;
+.pipe .bottom {
+  top: calc(
+    100vh - calc(var(--bottom-of-top-pipe) * 1px) + calc(var(--pipe-hole) * 1px)
+  );
+  bottom: 0;
 }

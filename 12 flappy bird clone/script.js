@@ -1,4 +1,5 @@
 import { updateBird, setInitialPositionOfBird, getBirdRect } from "./bird.js";
+import { createPipe } from "./pipe.js";
 
 document.addEventListener("keypress", handleStart, { once: true });
 
