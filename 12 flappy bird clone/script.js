@@ -1,5 +1,7 @@
+"use strict";
+
 import { updateBird, setInitialPositionOfBird, getBirdRect } from "./bird.js";
-import { createPipe } from "./pipe.js";
+import { setupPipe, updatePipe } from "./pipe.js";
 
 document.addEventListener("keypress", handleStart, { once: true });
 
@@ -11,6 +13,7 @@ function updateFrame(time) {
   if (lastTime) {
     const delta = time - lastTime;
     updateBird(delta);
+    updatePipe(delta);
   }
   if (checkLose()) return handleLose();
 
@@ -21,6 +24,7 @@ function updateFrame(time) {
 function handleStart(e) {
   title.classList.add("hide");
   setInitialPositionOfBird();
+  setupPipe();
   lastTime = false;
   window.requestAnimationFrame(updateFrame);
 }

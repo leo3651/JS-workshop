@@ -40,10 +40,6 @@ body {
 }
 
 .pipe {
-  --pipe-width: 120;
-  --pipe-left: 300;
-  --bottom-of-top-pipe: 700;
-  --pipe-hole: 200;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -54,7 +50,7 @@ body {
 .pipe > .segment {
   position: absolute;
   width: 100%;
-  background-color: green;
+  background-color: rgb(175, 238, 144);
 }
 
 .pipe .top {
