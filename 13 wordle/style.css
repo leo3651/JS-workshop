@@ -37,7 +37,11 @@ body {
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: hsl(200, 1%, 51%);
+  background-color: hsl(
+    var(--hue, 200),
+    var(--saturation, 1%),
+    calc(var(--lightness, 51%) + var(--lightness-offset, 0%))
+  );
   color: white;
   fill: white;
   text-transform: uppercase;
@@ -48,4 +52,48 @@ body {
 
 .large {
   grid-column: span 3;
+}
+
+.key:hover,
+.key:focus {
+  --lightness-offset: 10%;
+}
+
+.key.wrong {
+  --lightness: 23%;
+}
+
+.key.wrong-location {
+  --hue: 49;
+  --saturation: 51%;
+  --lightness: 47%;
+}
+
+.key.correct {
+  --hue: 115;
+  --saturation: 29%;
+  --lightness: 43%;
+}
+
+.guess-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 5rem);
+  grid-auto-rows: 5rem;
+  gap: 0.4rem;
+  justify-content: center;
+  align-content: center;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.tile {
+  color: white;
+  font-size: 3rem;
+  border: 0.05rem solid hsl(240, 2%, 23%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  user-select: none;
 }
