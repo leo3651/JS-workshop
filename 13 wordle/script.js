@@ -15289,6 +15289,15 @@ const targetWords = [
   "rural",
   "shave",
 ];
+const WORD_LENGTH = 5;
+const guessGrid = document.querySelector("[data-guess-grid]");
+
+startInteraction();
+
+function stopInteraction() {
+  document.removeEventListener("click", handleMouseClick);
+  document.removeEventListener("keydown", handleKeyPress);
+}
 
 function startInteraction() {
   document.addEventListener("click", handleMouseClick);
@@ -15301,14 +15310,30 @@ function handleMouseClick(e) {
   if (e.target.matches("[data-enter]"))
     return submitGuess(e.target.dataset.enter);
 
-  if (e.target.matches("[data-delete]"))
+  if (e.target.closest(".key")?.matches("[data-delete]"))
     return deleteKey(e.target.dataset.delete);
 }
 
 function handleKeyPress(e) {
-  if (e.key === "Enter") return submitGuess();
+  if (e.key === "Enter") return submitGuess(e.target.dataset.enter);
 
-  if (e.key === "Backspace" || e.key === "Delete") return deleteKey();
+  if (e.key === "Backspace" || e.key === "Delete")
+    return deleteKey(e.target.dataset.delete);
 
-  if (e.key.match(/^[a-z]$/)) return pressKey();
+  if (e.key.match(/^[a-z]$/)) {
+    pressKey(e.key);
+  }
+}
+
+function pressKey(key) {
+  const activeTiles = getActiveTiles();
+  if (activeTiles.length >= WORD_LENGTH) return;
+  const freeTile = guessGrid.querySelector(":not([data-letter])");
+  freeTile.dataset.letter = key.toLowerCase();
+  freeTile.textContent = key;
+  freeTile.dataset.state = "active";
+}
+
+function getActiveTiles() {
+  return guessGrid.querySelectorAll(`[data-state="active"]`);
 }
