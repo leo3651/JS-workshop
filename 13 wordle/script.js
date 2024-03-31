@@ -15291,6 +15291,11 @@ const targetWords = [
 ];
 const WORD_LENGTH = 5;
 const guessGrid = document.querySelector("[data-guess-grid]");
+const alertContainer = document.querySelector("[data-alert-container]");
+const offsetFromDate = new Date(2024, 0, 1);
+const mSecondsOffset = Date.now() - offsetFromDate;
+const daysOffset = mSecondsOffset / 1000 / 60 / 60 / 24;
+const targetWord = targetWords[Math.round(daysOffset)];
 
 startInteraction();
 
@@ -15310,19 +15315,28 @@ function handleMouseClick(e) {
   if (e.target.matches("[data-enter]"))
     return submitGuess(e.target.dataset.enter);
 
-  if (e.target.closest(".key")?.matches("[data-delete]"))
-    return deleteKey(e.target.dataset.delete);
+  if (e.target.closest(".key")?.matches("[data-delete]")) return deleteKey();
 }
 
 function handleKeyPress(e) {
   if (e.key === "Enter") return submitGuess(e.target.dataset.enter);
 
-  if (e.key === "Backspace" || e.key === "Delete")
-    return deleteKey(e.target.dataset.delete);
+  if (e.key === "Backspace" || e.key === "Delete") return deleteKey();
 
   if (e.key.match(/^[a-z]$/)) {
     pressKey(e.key);
   }
+}
+
+function submitGuess() {
+  const activeTiles = [...getActiveTiles()];
+  if (activeTiles.length !== WORD_LENGTH) {
+    showAlert("Not enough letters");
+    shakeTiles(activeTiles);
+    return;
+  }
+  const guess = activeTiles.map((tile) => tile.textContent).join("");
+  console.log(guess);
 }
 
 function pressKey(key) {
@@ -15334,6 +15348,26 @@ function pressKey(key) {
   freeTile.dataset.state = "active";
 }
 
+function deleteKey() {
+  const activeTiles = Array.from(getActiveTiles());
+  const lastTile = activeTiles.at(-1);
+  if (!lastTile) return;
+  lastTile.textContent = "";
+  delete lastTile.dataset.state;
+  delete lastTile.dataset.letter;
+}
+
 function getActiveTiles() {
   return guessGrid.querySelectorAll(`[data-state="active"]`);
+}
+
+function showAlert(message, duration = 1000) {
+  const alert = document.createElement("div");
+  alert.textContent = message;
+  alert.classList.add("alert");
+  alertContainer.prepend(alert);
+
+  setTimeout(() => {
+    alert.classList.add("hide");
+  }, duration);
 }
