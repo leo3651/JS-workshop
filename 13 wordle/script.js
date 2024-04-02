@@ -15369,5 +15369,17 @@ function showAlert(message, duration = 1000) {
 
   setTimeout(() => {
     alert.classList.add("hide");
+    alert.addEventListener("transitionend", (e) => {
+      alert.remove();
+    });
   }, duration);
+}
+
+function shakeTiles(activeTiles) {
+  activeTiles.forEach((tile) => {
+    tile.classList.add("shake");
+    tile.addEventListener("animationend", () => {
+      tile.classList.remove("shake");
+    });
+  });
 }
