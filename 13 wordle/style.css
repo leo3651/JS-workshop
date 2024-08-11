@@ -96,6 +96,7 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   user-select: none;
+  transition: transform 250ms ease;
 }
 
 .tile[data-state="active"] {
@@ -171,4 +172,8 @@ body {
 
 .alert.hide {
   opacity: 0;
+}
+
+.flip-tile {
+  transform: rotateX(90deg);
 }

@@ -15292,6 +15292,7 @@ const targetWords = [
 const WORD_LENGTH = 5;
 const guessGrid = document.querySelector("[data-guess-grid]");
 const alertContainer = document.querySelector("[data-alert-container]");
+const keyboard = document.querySelector(".keyboard");
 const offsetFromDate = new Date(2024, 0, 1);
 const mSecondsOffset = Date.now() - offsetFromDate;
 const daysOffset = mSecondsOffset / 1000 / 60 / 60 / 24;
@@ -15336,7 +15337,15 @@ function submitGuess() {
     return;
   }
   const guess = activeTiles.map((tile) => tile.textContent).join("");
-  console.log(guess);
+
+  // if (!dictionary.includes(guess)) {
+  //   showAlert("Not in the list of the words");
+  //   shakeTiles(activeTiles);
+  //   return;
+  // }
+
+  //stopInteraction();
+  flipTiles(guess);
 }
 
 function pressKey(key) {
@@ -15378,8 +15387,36 @@ function showAlert(message, duration = 1000) {
 function shakeTiles(activeTiles) {
   activeTiles.forEach((tile) => {
     tile.classList.add("shake");
-    tile.addEventListener("animationend", () => {
-      tile.classList.remove("shake");
-    });
+    tile.addEventListener(
+      "animationend",
+      () => {
+        tile.classList.remove("shake");
+      },
+      { once: true }
+    );
+  });
+}
+
+function flipTiles(guess) {
+  const activeTiles = getActiveTiles();
+  activeTiles.forEach((tile, index, array) => {
+    const letter = tile.dataset.letter;
+    const keyOnKeyboard = keyboard.querySelector(`[data-key="${letter}"]`);
+    setTimeout(() => {
+      tile.classList.add("flip-tile");
+      tile.addEventListener("transitionend", () => {
+        tile.classList.remove("flip-tile");
+        if (letter === targetWord[index]) {
+          tile.dataset.state = "correct";
+          keyOnKeyboard.classList.add("correct");
+        } else if (targetWord.includes(letter)) {
+          tile.dataset.state = "wrong-location";
+          keyOnKeyboard.classList.add("wrong-location");
+        } else {
+          tile.dataset.state = "wrong";
+          keyOnKeyboard.classList.add("wrong");
+        }
+      });
+    }, index * 250);
   });
 }
