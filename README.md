@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Sortable drag&drop:
+
 #### Wordle:
 
 #### Snake game: https://6601cb6f98c6af3108d7873b--melodic-conkies-81a5e8.netlify.app/
