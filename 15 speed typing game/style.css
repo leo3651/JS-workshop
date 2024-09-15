@@ -19,6 +19,14 @@ body,
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+.container {
+  background-color: #f0db4f;
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+}
+
 .timer,
 .container {
   text-align: center;
@@ -32,12 +40,10 @@ body,
   top: 1rem;
 }
 
-.container {
-  background-color: #f0db4f;
-  padding: 30px;
-  border-radius: 10px;
-  width: 500px;
-  max-width: 90%;
+.quote {
+  text-align: left;
+  margin-bottom: 40px;
+  padding: 0 13px;
 }
 
 #textArea {
@@ -56,17 +62,9 @@ body,
   border-color: black;
 }
 
-.quote {
-  text-align: left;
-  margin-bottom: 40px;
-  margin-left: 13px;
-  padding-right: 13px;
-}
-
 .quote,
 #textArea {
   font-size: 1.3rem;
-  text-align: justify;
 }
 
 #textArea::-webkit-scrollbar {
@@ -84,4 +82,13 @@ body,
 
 #textArea:hover::-webkit-scrollbar-thumb {
   background-color: #a1922e; /* Color of the scrollbar thumb */
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+  text-decoration: underline;
 }
