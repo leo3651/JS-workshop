@@ -4,6 +4,8 @@
 
 ### JS workshop repository
 
+#### Speed typing game:
+
 #### Sortable drag&drop:
 
 #### Wordle:
