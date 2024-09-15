@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e0555;
+}
+
+body,
+.quote,
+#textArea {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.timer,
+.container {
+  text-align: center;
+}
+
+.timer {
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #f0db4f;
+  top: 1rem;
+}
+
+.container {
+  background-color: #f0db4f;
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+}
+
+#textArea {
+  background-color: transparent;
+  border: 3px solid #a1922e;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 130px;
+  width: 100%;
+  resize: none;
+  outline: none;
+  scrollbar-gutter: unset;
+}
+
+#textArea:focus {
+  border-color: black;
+}
+
+.quote {
+  text-align: left;
+  margin-bottom: 40px;
+  margin-left: 13px;
+  padding-right: 13px;
+}
+
+.quote,
+#textArea {
+  font-size: 1.3rem;
+  text-align: justify;
+}
+
+#textArea::-webkit-scrollbar {
+  width: 4px; /* Width of the vertical scrollbar */
+}
+
+#textArea::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded edges of the scrollbar thumb */
+}
+
+#textArea::-webkit-scrollbar-track {
+  margin: 4px 0; /* Adds space at the top and bottom of the track */
+}
+
+#textArea:hover::-webkit-scrollbar-thumb {
+  background-color: #a1922e; /* Color of the scrollbar thumb */
+}
