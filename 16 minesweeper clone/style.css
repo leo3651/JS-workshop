@@ -27,8 +27,8 @@ body {
 .board {
   display: grid;
   padding: 10px;
-  grid-template-columns: repeat(10, 40px);
-  grid-template-rows: repeat(10, 40px);
+  grid-template-columns: repeat(var(--size), 40px);
+  grid-template-rows: repeat(var(--size), 40px);
   gap: 4px;
   background-color: #777;
 }
@@ -41,6 +41,7 @@ body {
   align-items: center;
   color: white;
   background-color: #bbb;
+  border: 2px solid #bbb;
   user-select: none;
 }
 

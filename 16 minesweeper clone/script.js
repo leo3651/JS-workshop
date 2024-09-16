@@ -1,6 +1,13 @@
-for (let i = 0; i < 10; i++) {
-  for (let j = 0; j < 10; j++) {
-    const div = document.createElement("div");
-    document.querySelector(".board").appendChild(div);
-  }
-}
+import { createBoard } from "./minesweeperLogic.js";
+
+const BOARD_SIZE = 10;
+const NUMBER_OF_MINES = 10;
+const boardEl = document.querySelector(".board");
+
+boardEl.style.setProperty("--size", BOARD_SIZE);
+const board = createBoard(BOARD_SIZE, NUMBER_OF_MINES);
+board.forEach((row) =>
+  row.forEach((tile) => boardEl.appendChild(tile.tileElement))
+);
+
+console.log(board);
