@@ -5,11 +5,14 @@ const TILE_STATUSES = {
   MARKED: "marked",
 };
 
+export let addToSumOfMinesLeft = 0;
+
 class Tile {
-  constructor(xCoordinate, yCoordinate, tileElement) {
+  constructor(xCoordinate, yCoordinate, tileElement, mine) {
     this.x = xCoordinate;
     this.y = yCoordinate;
     this.tileElement = tileElement;
+    this.mine = mine;
   }
 
   set status(value) {
@@ -29,8 +32,13 @@ export function createBoard(boardSize, numberOfMines) {
     for (let y = 0; y < boardSize; y++) {
       const tileElement = document.createElement("div");
       tileElement.dataset.status = TILE_STATUSES.HIDDEN;
-      const tile = new Tile(x, y, tileElement);
-      tile.mine = minePositions.some((pos) => positionMatch(pos, tile));
+
+      const tile = new Tile(
+        x,
+        y,
+        tileElement,
+        minePositions.some(positionMatch.bind(null, { x, y }))
+      );
       row.push(tile);
     }
     board.push(row);
@@ -46,7 +54,7 @@ function getMinePositions(numberOfMines, boardSize) {
       y: randomNumber(boardSize),
     };
 
-    if (!minePositions.some((pos) => positionMatch(pos, position))) {
+    if (!minePositions.some(positionMatch.bind(null, position))) {
       minePositions.push(position);
     }
   }
@@ -60,4 +68,54 @@ function positionMatch(a, b) {
 
 function randomNumber(boardSize) {
   return Math.floor(Math.random() * boardSize);
+}
+
+export function markTile(tileEl) {
+  if (
+    tileEl.instance.status !== TILE_STATUSES.MARKED &&
+    tileEl.instance.status !== TILE_STATUSES.HIDDEN
+  ) {
+    return;
+  }
+
+  if (tileEl.instance.status === TILE_STATUSES.HIDDEN) {
+    tileEl.instance.status = TILE_STATUSES.MARKED;
+    addToSumOfMinesLeft = -1;
+  } else {
+    tileEl.instance.status = TILE_STATUSES.HIDDEN;
+    addToSumOfMinesLeft = 1;
+  }
+}
+
+export function revealTile(tileEl, board) {
+  if (tileEl.instance.status !== TILE_STATUSES.HIDDEN) {
+    return;
+  }
+
+  if (tileEl.instance.mine) {
+    tileEl.instance.status = TILE_STATUSES.MINE;
+    return;
+  }
+
+  tileEl.instance.status = TILE_STATUSES.NUMBER;
+  const nearbyTiles = getNearbyTiles(tileEl, board);
+  const mines = nearbyTiles.filter((tile) => tile.mine);
+  if (mines.length) {
+    tileEl.textContent = mines.length;
+  } else {
+  }
+}
+
+function getNearbyTiles(tileEl, board) {
+  const tiles = [];
+  const { x, y } = tileEl.instance;
+
+  for (let xOffset = -1; xOffset <= 1; xOffset++) {
+    for (let yOffset = -1; yOffset <= 1; yOffset++) {
+      const tile = board[x + xOffset]?.[y + yOffset];
+      if (tile) tiles.push(tile);
+    }
+  }
+
+  return tiles;
 }

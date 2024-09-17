@@ -55,7 +55,8 @@ body {
 }
 
 .board > [data-status="number"] {
-  background-color: none;
+  background-color: transparent;
+  font-size: 1.5rem;
 }
 
 .board > [data-status="marked"] {
