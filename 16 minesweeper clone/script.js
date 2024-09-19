@@ -9,7 +9,7 @@ import {
 } from "./minesweeperLogic.js";
 
 const BOARD_SIZE = 10;
-const NUMBER_OF_MINES = 10;
+const NUMBER_OF_MINES = 2;
 
 const boardEl = document.querySelector(".board");
 const numberOfMInesLeftEl = document.querySelector("[data-minesLeft]");

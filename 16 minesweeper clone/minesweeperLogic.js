@@ -121,7 +121,17 @@ function getNearbyTiles(tileEl, board) {
   return tiles;
 }
 
-export function checkWin(board) {}
+export function checkWin(board) {
+  return board.every((row) =>
+    row.every(
+      (tile) =>
+        tile.status === TILE_STATUSES.NUMBER ||
+        (tile.status === TILE_STATUSES.HIDDEN && tile.mine) ||
+        (tile.status === TILE_STATUSES.MARKED && tile.mine)
+    )
+  );
+}
+
 export function checkLose(board) {
   return board.some((row) =>
     row.some((tile) => tile.status === TILE_STATUSES.MINE)
