@@ -1,4 +1,4 @@
-const TILE_STATUSES = {
+export const TILE_STATUSES = {
   HIDDEN: "hidden",
   MINE: "mine",
   NUMBER: "number",
@@ -46,30 +46,6 @@ export function createBoard(boardSize, numberOfMines) {
   return board;
 }
 
-function getMinePositions(numberOfMines, boardSize) {
-  const minePositions = [];
-  while (minePositions.length < numberOfMines) {
-    const position = {
-      x: randomNumber(boardSize),
-      y: randomNumber(boardSize),
-    };
-
-    if (!minePositions.some(positionMatch.bind(null, position))) {
-      minePositions.push(position);
-    }
-  }
-
-  return minePositions;
-}
-
-function positionMatch(a, b) {
-  return a.x === b.x && a.y === b.y;
-}
-
-function randomNumber(boardSize) {
-  return Math.floor(Math.random() * boardSize);
-}
-
 export function markTile(tileEl) {
   if (
     tileEl.instance.status !== TILE_STATUSES.MARKED &&
@@ -103,7 +79,32 @@ export function revealTile(tileEl, board) {
   if (mines.length) {
     tileEl.textContent = mines.length;
   } else {
+    nearbyTiles.forEach((tile) => revealTile(tile.tileElement, board));
   }
+}
+
+function getMinePositions(numberOfMines, boardSize) {
+  const minePositions = [];
+  while (minePositions.length < numberOfMines) {
+    const position = {
+      x: randomNumber(boardSize),
+      y: randomNumber(boardSize),
+    };
+
+    if (!minePositions.some(positionMatch.bind(null, position))) {
+      minePositions.push(position);
+    }
+  }
+
+  return minePositions;
+}
+
+function positionMatch(a, b) {
+  return a.x === b.x && a.y === b.y;
+}
+
+function randomNumber(boardSize) {
+  return Math.floor(Math.random() * boardSize);
 }
 
 function getNearbyTiles(tileEl, board) {
@@ -118,4 +119,11 @@ function getNearbyTiles(tileEl, board) {
   }
 
   return tiles;
+}
+
+export function checkWin(board) {}
+export function checkLose(board) {
+  return board.some((row) =>
+    row.some((tile) => tile.status === TILE_STATUSES.MINE)
+  );
 }
