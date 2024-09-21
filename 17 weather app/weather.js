@@ -30,8 +30,8 @@ function parseCurrentWeather({ current_weather, daily }) {
   } = current_weather;
 
   const {
-    temperature_2m_max: [highTemp],
-    temperature_2m_min: [lowTemp],
+    temperature_2m_max: [maxTemp],
+    temperature_2m_min: [minTemp],
     apparent_temperature_max: [highFeelsLike],
     apparent_temperature_min: [lowFeelsLike],
     precipitation_sum: [precip],
@@ -39,8 +39,8 @@ function parseCurrentWeather({ current_weather, daily }) {
 
   return {
     currentTemp: Math.round(currentTemp),
-    highTemp: Math.round(highTemp),
-    lowTemp: Math.round(lowTemp),
+    maxTemp: Math.round(maxTemp),
+    minTemp: Math.round(minTemp),
     highFeelsLike: Math.round(highFeelsLike),
     lowFeelsLike: Math.round(lowFeelsLike),
     windSpeed: Math.round(windSpeed),
@@ -48,5 +48,30 @@ function parseCurrentWeather({ current_weather, daily }) {
     iconCode,
   };
 }
-function parseDailyWeather(data) {}
-function parseHourlyWeather(data) {}
+
+function parseDailyWeather({ daily }) {
+  const {
+    temperature_2m_max: maxTemp,
+    temperature_2m_min: minTemp,
+    weathercode: weatherCode,
+  } = daily;
+
+  return daily.time.map((time, i) => ({
+    timestamp: time * 1000,
+    iconCode: weatherCode[i],
+    averageTemp: Math.round((maxTemp[i] + minTemp[i]) / 2),
+  }));
+}
+
+function parseHourlyWeather({ hourly, current_weather }) {
+  return hourly.time
+    .map((time, i) => ({
+      timestamp: time * 1000,
+      temperature: Math.round(hourly.temperature_2m[i]),
+      iconCode: hourly.weathercode[i],
+      windSpeed: Math.round(hourly.windspeed_10m[i]),
+      precip: Math.round(hourly.precipitation[i] * 100) / 100,
+      feelsLike: Math.round(hourly.apparent_temperature[i]),
+    }))
+    .filter(({ timestamp }) => timestamp >= current_weather.time * 1000);
+}
