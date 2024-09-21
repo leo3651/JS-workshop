@@ -44,7 +44,7 @@ function parseCurrentWeather({ current_weather, daily }) {
     highFeelsLike: Math.round(highFeelsLike),
     lowFeelsLike: Math.round(lowFeelsLike),
     windSpeed: Math.round(windSpeed),
-    precip: Math.round(precip * 100) / 100,
+    precip: Math.round(precip * 1000) / 1000,
     iconCode,
   };
 }
@@ -70,7 +70,7 @@ function parseHourlyWeather({ hourly, current_weather }) {
       temperature: Math.round(hourly.temperature_2m[i]),
       iconCode: hourly.weathercode[i],
       windSpeed: Math.round(hourly.windspeed_10m[i]),
-      precip: Math.round(hourly.precipitation[i] * 100) / 100,
+      precip: Math.round(hourly.precipitation[i] * 1000) / 1000,
       feelsLike: Math.round(hourly.apparent_temperature[i]),
     }))
     .filter(({ timestamp }) => timestamp >= current_weather.time * 1000);
