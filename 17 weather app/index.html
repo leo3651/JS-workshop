@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="style.css" />
     <title>Weather app</title>
   </head>
-  <body>
+  <body class="blurred">
     <header class="header">
       <!-- HEADER LEFT -->
       <div class="header-left">
-        <img src="cloud.svg" class="weather-icon large" data-current-icon />
+        <img class="weather-icon large" data-current-icon />
         <div class="header-current-temp">
           <span data-current-temp>31</span>&deg;
         </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="info-group">
           <label class="label">Low</label>
-          <div><span data-current-low>19</span>&deg;</div>
+          <div><span data-current-low></span>&deg;</div>
         </div>
         <div class="info-group">
           <label class="label">Fl low</label>
@@ -375,6 +375,7 @@
       </tbody>
     </table>
 
+    <!-- DAY-CARD-TEMPLATE -->
     <template class="day-card-template">
       <div class="day-card">
         <img data-icon class="weather-icon" />
@@ -382,6 +383,8 @@
         <div><span data-temp></span>&deg;</div>
       </div>
     </template>
+
+    <!-- DAY-ROW-TEMPLATE -->
     <template class="day-row-template">
       <tr class="hour-row">
         <td>

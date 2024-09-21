@@ -15,9 +15,9 @@ export function getWeather(latitude, longitude, timezone) {
     .then(({ data }) => {
       console.log(data);
       return {
-        currentWeather: parseCurrentWeather(data),
-        dailyWeather: parseDailyWeather(data),
-        hourlyWeather: parseHourlyWeather(data),
+        current: parseCurrentWeather(data),
+        daily: parseDailyWeather(data),
+        hourly: parseHourlyWeather(data),
       };
     });
 }
