@@ -4,13 +4,13 @@ import {
   setCustomProperty,
 } from "./updateCustomProperty.js";
 
-const worldEl = document.querySelector(".world");
-
 const SPEED = 0.05;
 const CACTUS_INTERVAL_MIN = 500;
 const CACTUS_INTERVAL_MAX = 2000;
 
+const worldEl = document.querySelector(".world");
 let nextCactusTime;
+
 export function setupCactus() {
   nextCactusTime = 0;
   document.querySelectorAll(".cactus").forEach((cactus) => cactus.remove());

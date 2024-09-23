@@ -75,16 +75,10 @@ function updateScore(delta) {
 }
 
 function checkLose() {
-  const cactusesRects = getCactusesRects();
   const dinoRect = getDinoRect();
-  if (
-    cactusesRects.some((cactusRect) =>
-      areRectsIntersecting(cactusRect, dinoRect)
-    )
-  ) {
-    return true;
-  }
-  return false;
+  return getCactusesRects().some((cactusRect) =>
+    areRectsIntersecting(cactusRect, dinoRect)
+  );
 }
 
 function handleLose() {
