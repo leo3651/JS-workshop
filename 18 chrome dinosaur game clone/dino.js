@@ -61,3 +61,11 @@ function onJump(e) {
     isJumping = true;
   }
 }
+
+export function getDinoRect() {
+  return document.querySelector(".dino").getBoundingClientRect();
+}
+
+export function setDinoLose() {
+  dinoEl.src = "./images/dino-lose.png";
+}

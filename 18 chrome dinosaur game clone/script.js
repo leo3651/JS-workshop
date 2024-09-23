@@ -1,5 +1,6 @@
-import { setupDino, updateDino } from "./dino.js";
+import { setupDino, updateDino, getDinoRect, setDinoLose } from "./dino.js";
 import { setUpGround, updateGround } from "./ground.js";
+import { setupCactus, updateCactus, getCactusesRects } from "./cactus.js";
 
 const WORLD_wIDTH = 100;
 const WORLD_HEIGHT = 30;
@@ -39,6 +40,7 @@ function handleStart() {
   startScreenEl.classList.add("hide");
   setUpGround();
   setupDino();
+  setupCactus();
   window.requestAnimationFrame(updateFrame);
 }
 
@@ -53,6 +55,11 @@ function updateFrame(time) {
   lastTime = time;
   updateGround(deltaTime, speedIncrease);
   updateDino(deltaTime, speedIncrease);
+  updateCactus(deltaTime, speedIncrease);
+  if (checkLose()) {
+    handleLose();
+    return;
+  }
   updateSpeed(deltaTime);
   updateScore(deltaTime);
   window.requestAnimationFrame(updateFrame);
@@ -65,4 +72,34 @@ function updateSpeed(delta) {
 function updateScore(delta) {
   score += delta * 0.01;
   scoreEl.textContent = Math.floor(score);
+}
+
+function checkLose() {
+  const cactusesRects = getCactusesRects();
+  const dinoRect = getDinoRect();
+  if (
+    cactusesRects.some((cactusRect) =>
+      areRectsIntersecting(cactusRect, dinoRect)
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function handleLose() {
+  setDinoLose();
+  setTimeout(() => {
+    document.addEventListener("keydown", handleStart, { once: true });
+    startScreenEl.classList.remove("hide");
+  }, 300);
+}
+
+function areRectsIntersecting(rect1, rect2) {
+  return !(
+    rect1.right < rect2.left ||
+    rect1.left > rect2.right ||
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom
+  );
 }
