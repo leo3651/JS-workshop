@@ -19,7 +19,7 @@ body {
 .calc-grid {
   display: grid;
   grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-template-rows: minmax(150px, auto) repeat(5, 100px);
 }
 
 .calc-grid > button {
@@ -39,24 +39,23 @@ body {
 }
 
 .output-screen {
-  grid-column-start: 1;
   grid-column: 1/-1;
   background-color: rgba(0, 0, 0, 0.696);
-  color: white;
   display: flex;
+  align-items: flex-end;
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
   word-wrap: break-word;
   word-break: break-all;
-  font-size: 1.5rem;
 }
 
 .output-screen .previous-operand {
   color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
 }
 
 .output-screen .current-operand {
-  color: white;
   font-size: 2.5rem;
+  color: white;
 }

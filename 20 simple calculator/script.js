@@ -6,29 +6,98 @@ class Calculator {
   }
 
   clearAll() {
-    this.previousOperandEl.textContent = "";
-    this.currentOperandEl.textContent = "";
+    this.currentOperand = "";
+    this.previousOperand = "";
+    this.operation = undefined;
   }
 
   delete() {
-    this.currentOperandEl.textContent = this.currentOperandEl.textContent.slice(
-      0,
-      -1
-    );
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
 
-  appendNumber(val) {
-    this.currentOperandEl.textContent += val;
+  appendNumber(number) {
+    if (
+      number.toString() === "." &&
+      this.currentOperand.toString().includes(".")
+    ) {
+      return;
+    }
+    this.currentOperand += number;
   }
 
   chooseOperation(operation) {
-    this.previousOperandEl.textContent = this.currentOperandEl.textContent;
-    this.currentOperandEl.textContent = operation;
+    if (this.currentOperand.toString() === "") return;
+    if (this.currentOperand.toString() !== "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = "";
   }
 
-  compute() {}
+  compute() {
+    if (
+      isNaN(Number.parseFloat(this.previousOperand)) ||
+      isNaN(Number.parseFloat(this.currentOperand))
+    )
+      return;
 
-  display() {}
+    let result;
+
+    if (this.operation === "*") {
+      result =
+        Number.parseFloat(this.currentOperand) *
+        Number.parseFloat(this.previousOperand);
+    }
+    if (this.operation === "÷") {
+      result =
+        Number.parseFloat(this.previousOperand) /
+        Number.parseFloat(this.currentOperand);
+    }
+    if (this.operation === "+") {
+      result =
+        Number.parseFloat(this.previousOperand) +
+        Number.parseFloat(this.currentOperand);
+    }
+    if (this.operation === "-") {
+      result =
+        Number.parseFloat(this.previousOperand) -
+        Number.parseFloat(this.currentOperand);
+    }
+
+    this.currentOperand = result;
+    this.previousOperand = "";
+    this.operation = undefined;
+  }
+
+  display() {
+    if (this.operation) {
+      this.previousOperandEl.textContent =
+        this.formatNumber(this.previousOperand) + " " + this.operation;
+    } else {
+      this.previousOperandEl.textContent = this.previousOperand;
+    }
+    this.currentOperandEl.textContent = this.formatNumber(this.currentOperand);
+  }
+
+  formatNumber(number) {
+    let [integerDigits, decimalDigits] = number.toString().split(".");
+    integerDigits = Number.parseFloat(integerDigits);
+
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = "";
+    } else {
+      integerDisplay = integerDigits.toLocaleString("en", {
+        maximumFractionDigits: 0,
+      });
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
+  }
 }
 
 const numberBtns = document.querySelectorAll("[data-number]");
@@ -52,18 +121,32 @@ document.body.addEventListener("click", (e) => {
     return;
   }
 
-  if (e.target.dataset.number) {
-    calc.appendNumber(e.target.textContent);
+  const key = Object.keys(e.target.dataset)[0];
+
+  switch (key) {
+    case "number":
+      calc.appendNumber(e.target.textContent);
+      break;
+
+    case "operation":
+      calc.chooseOperation(e.target.textContent);
+      break;
+
+    case "allClear":
+      calc.clearAll();
+      break;
+
+    case "equals":
+      calc.compute();
+      break;
+
+    case "delete":
+      calc.delete();
+      break;
+
+    default:
+      break;
   }
-  if (e.target.dataset.delete) {
-    calc.delete();
-  }
-  if (e.target.dataset.operation) {
-  }
-  if (e.target.dataset.allClear) {
-    calc.clearAll();
-  }
-  if (e.target.dataset.equals) {
-    calc.compute();
-  }
+
+  calc.display();
 });
