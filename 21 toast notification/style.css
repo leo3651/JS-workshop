@@ -1,0 +1,44 @@
+.toast {
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.toast::after {
+  display: inline-block;
+  content: "\00D7";
+  position: absolute;
+  top: 2px;
+  right: 6px;
+}
+
+.toast-container {
+  position: fixed;
+  margin: 10px;
+  width: 250px;
+}
+
+.toast-container[data-position^="top-"] {
+  top: 0;
+}
+
+.toast-container[data-position^="bottom-"] {
+  bottom: 0;
+}
+
+.toast-container[data-position$="-left"] {
+  left: 0;
+}
+
+.toast-container[data-position$="-right"] {
+  right: 0;
+}
+
+.toast-container[data-position$="-center"] {
+  left: 50%;
+  transform: translateX(-50%);
+}
