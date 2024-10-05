@@ -6,14 +6,48 @@
   border: 1px solid;
   border-radius: 3px;
   cursor: pointer;
+  transition: 250ms ease-in-out;
+  overflow: hidden;
 }
 
-.toast.can-close::after {
+.toast-container[data-position$="-right"] .toast {
+  transform: translateX(110%);
+}
+
+.toast-container[data-position$="-left"] .toast {
+  transform: translateX(-110%);
+}
+
+.toast-container[data-position="top-center"] .toast {
+  transform: translateY(-100vh);
+}
+
+.toast-container[data-position="bottom-center"] .toast {
+  transform: translateY(100vh);
+}
+
+.toast-container .toast.show {
+  transform: translate(0, 0);
+}
+
+.toast.can-close::before {
   display: inline-block;
   content: "\00D7";
   position: absolute;
   top: 2px;
   right: 6px;
+}
+
+.toast.progress-bar::after {
+  --progress-width: 100;
+  content: "";
+  display: inline-block;
+  width: calc(var(--progress-width) * 1%);
+  height: 4px;
+  background-color: rgb(64, 98, 209);
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .toast-container {
