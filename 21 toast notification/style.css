@@ -20,6 +20,9 @@
   position: fixed;
   margin: 10px;
   width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .toast-container[data-position^="top-"] {
