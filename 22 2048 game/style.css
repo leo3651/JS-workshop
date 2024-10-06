@@ -40,9 +40,6 @@ body {
 }
 
 .tile {
-  --x: 0;
-  --y: 3;
-  --lightness: 80;
   --text-lightness: 20;
 
   position: absolute;
@@ -53,11 +50,11 @@ body {
   align-items: center;
   justify-content: center;
 
-  height: var(--call-size);
-  width: var(--call-size);
+  height: var(--cell-size);
+  width: var(--cell-size);
 
-  top: calc(var(--y) * (var(--call-size) + var(--call-gap)) + var(--call-gap));
-  left: calc(var(--x) * (var(--call-size) + var(--call-gap)) + var(--call-gap));
+  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
 
   font-weight: bold;
   border-radius: var(--border-radius);

@@ -13,13 +13,39 @@ export class Grid {
     gridEl.style.setProperty("--border-radius", `${BORDER_RADIUS}vmin`);
     this.#cells = fillGameBoardWithCells(gridEl);
   }
+
+  get #emptyCells() {
+    return this.#cells.filter((cell) => cell.tile === null);
+  }
+
+  get randomEmptyCell() {
+    const randomIndex = Math.floor(Math.random() * this.#emptyCells.length);
+    return this.#emptyCells[randomIndex];
+  }
 }
 
 class Cell {
+  #cellEl;
+  #x;
+  #y;
+  #tile;
+
   constructor(cellElement, x, y) {
-    this.cellEl = cellElement;
-    this.x = x;
-    this.y = y;
+    this.#cellEl = cellElement;
+    this.#x = x;
+    this.#y = y;
+    this.#tile = null;
+  }
+
+  get tile() {
+    return this.#tile;
+  }
+
+  set tile(value) {
+    this.#tile = value;
+    if (value === null) return;
+    this.#tile.x = this.#x;
+    this.#tile.y = this.#y;
   }
 }
 
