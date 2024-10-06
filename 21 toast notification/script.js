@@ -5,7 +5,11 @@ document.querySelector("button").addEventListener("click", () => {
     text: "Hello",
     canClose: true,
     position: "top-right",
-    autoClose: 7000,
+    autoClose: 15000,
     progressBar: true,
+    pauseOnHover: true,
+    onClose() {
+      toast.update({ text: "Bye" });
+    },
   });
 });
