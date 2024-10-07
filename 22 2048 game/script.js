@@ -44,12 +44,35 @@ function handleInput(e) {
 
 function moveUp() {
   console.log(grid.cellsByColumn);
-  console.log(grid.cellsByRow);
-  slideTiles(grid.cellsByColumn);
+  return slideTiles(grid.cellsByColumn);
 }
 
 function moveDown() {}
 function moveRight() {}
 function moveLeft() {}
 
-function slideTiles() {}
+function slideTiles(cells) {
+  console.log(cells);
+  cells.forEach((group) => {
+    for (let i = 1; i < group.length; i++) {
+      const cell = group[i];
+      let lastValidCell = null;
+      if (cell.tile !== null) {
+        for (let j = i - 1; j >= 0; j--) {
+          const cellAbove = group[j];
+          if (!cellAbove.canAccept(cell.tile)) break;
+          lastValidCell = cellAbove;
+        }
+
+        if (lastValidCell != null) {
+          if (lastValidCell.tile != null) {
+            lastValidCell.mergeTile = cell.tile;
+          } else {
+            lastValidCell.tile = cell.tile;
+          }
+          cell.tile = null;
+        }
+      }
+    }
+  });
+}

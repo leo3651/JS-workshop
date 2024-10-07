@@ -18,7 +18,7 @@ export class Grid {
     return this.#cells.filter((cell) => cell.tile === null);
   }
 
-  get cellsByColumn() {
+  get cellsByRow() {
     return this.#cells.reduce((cellGrid, cell) => {
       cellGrid[cell.x] = cellGrid[cell.x] || [];
       cellGrid[cell.x][cell.y] = cell;
@@ -26,7 +26,7 @@ export class Grid {
     }, []);
   }
 
-  get cellsByRow() {
+  get cellsByColumn() {
     let cellsIndex = 0;
     const cellByRows = [];
     for (let i = 0; i < GRID_SIZE; i++) {
@@ -50,6 +50,7 @@ class Cell {
   #x;
   #y;
   #tile;
+  #mergeTile;
 
   constructor(cellElement, x, y) {
     this.#cellEl = cellElement;
@@ -75,6 +76,24 @@ class Cell {
     if (value === null) return;
     this.#tile.x = this.#x;
     this.#tile.y = this.#y;
+  }
+
+  get mergeTile() {
+    return this.#mergeTile;
+  }
+
+  set mergeTile(val) {
+    this.#mergeTile = val;
+    if (val === null) return;
+    this.#mergeTile.x = this.#x;
+    this.#mergeTile.y = this.#y;
+  }
+
+  canAccept(tile) {
+    return (
+      this.tile === null ||
+      (this.mergeTile === null && this.tile.value === tile.value)
+    );
   }
 }
 
