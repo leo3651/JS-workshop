@@ -50,7 +50,7 @@ async function handleInput(e) {
 
     default:
       setupInput();
-      break;
+      return;
   }
 
   grid.cells.forEach((cell) => cell.mergeTiles());
