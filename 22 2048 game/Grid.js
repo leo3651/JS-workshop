@@ -100,6 +100,14 @@ class Cell {
       (this.mergeTile === null && this.tile.value === tile.value)
     );
   }
+
+  mergeTiles() {
+    if (this.mergeTile !== null) {
+      this.tile.value *= 2;
+      this.mergeTile.remove();
+      this.mergeTile = null;
+    }
+  }
 }
 
 function fillGameBoardWithCells(gridEl) {

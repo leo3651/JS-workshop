@@ -42,4 +42,12 @@ export class Tile {
   remove() {
     this.#tileElement.remove();
   }
+
+  waitForTransitionEnd(event) {
+    return new Promise((resolve) => {
+      this.#tileElement.addEventListener(event, resolve, {
+        once: true,
+      });
+    });
+  }
 }

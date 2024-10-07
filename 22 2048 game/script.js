@@ -5,8 +5,6 @@ const gameBoardEl = document.querySelector(".game-board");
 
 const grid = new Grid(gameBoardEl);
 
-console.log(grid);
-
 grid.randomEmptyCell.tile = new Tile(gameBoardEl);
 grid.randomEmptyCell.tile = new Tile(gameBoardEl);
 
@@ -16,22 +14,38 @@ function setupInput() {
   document.addEventListener("keydown", handleInput, { once: true });
 }
 
-function handleInput(e) {
+async function handleInput(e) {
   switch (e.key) {
     case "ArrowUp":
-      moveUp();
+      if (!canMoveUp()) {
+        setupInput();
+        return;
+      }
+      await moveUp();
       break;
 
     case "ArrowDown":
-      moveDown();
+      if (!canMoveDown()) {
+        setupInput();
+        return;
+      }
+      await moveDown();
       break;
 
     case "ArrowRight":
-      moveRight();
+      if (!canMoveRight()) {
+        setupInput();
+        return;
+      }
+      await moveRight();
       break;
 
     case "ArrowLeft":
-      moveLeft();
+      if (!canMoveLeft()) {
+        setupInput();
+        return;
+      }
+      await moveLeft();
       break;
 
     default:
@@ -39,54 +53,81 @@ function handleInput(e) {
       break;
   }
 
-  grid.cells.forEach((cell) => {
-    if (cell.mergeTile !== null) {
-      cell.tile.value *= 2;
-      cell.mergeTile.remove();
-      cell.mergeTile = null;
-    }
-  });
+  grid.cells.forEach((cell) => cell.mergeTiles());
+  const newTile = new Tile(gameBoardEl);
+  grid.randomEmptyCell.tile = newTile;
 
-  grid.randomEmptyCell.tile = new Tile(gameBoardEl);
+  if (!canMoveDown() && !canMoveUp() && !canMoveRight() && !canMoveLeft()) {
+    await newTile.waitForTransitionEnd("animationend");
+    alert("YOU LOSE");
+    return;
+  }
 
   setupInput();
 }
 
 function moveUp() {
-  slideTiles(grid.cellsByColumn);
+  return slideTiles(grid.cellsByColumn);
 }
 function moveDown() {
-  slideTiles(grid.cellsByColumn.map((group) => group.reverse()));
+  return slideTiles(grid.cellsByColumn.map((group) => group.reverse()));
 }
 function moveRight() {
-  slideTiles(grid.cellsByRow.map((group) => group.reverse()));
+  return slideTiles(grid.cellsByRow.map((group) => group.reverse()));
 }
 function moveLeft() {
-  slideTiles(grid.cellsByRow);
+  return slideTiles(grid.cellsByRow);
 }
 
 function slideTiles(cells) {
-  console.log(cells);
-  cells.forEach((group) => {
-    for (let i = 1; i < group.length; i++) {
-      const cell = group[i];
-      let lastValidCell = null;
-      if (cell.tile !== null) {
-        for (let j = i - 1; j >= 0; j--) {
-          const cellAbove = group[j];
-          if (!cellAbove.canAccept(cell.tile)) break;
-          lastValidCell = cellAbove;
-        }
-
-        if (lastValidCell !== null) {
-          if (lastValidCell.tile !== null) {
-            lastValidCell.mergeTile = cell.tile;
-          } else {
-            lastValidCell.tile = cell.tile;
+  return Promise.all(
+    cells.flatMap((group) => {
+      const promises = [];
+      for (let i = 1; i < group.length; i++) {
+        const cell = group[i];
+        let lastValidCell = null;
+        if (cell.tile !== null) {
+          for (let j = i - 1; j >= 0; j--) {
+            const cellAbove = group[j];
+            if (!cellAbove.canAccept(cell.tile)) break;
+            lastValidCell = cellAbove;
           }
-          cell.tile = null;
+
+          if (lastValidCell !== null) {
+            if (lastValidCell.tile !== null) {
+              lastValidCell.mergeTile = cell.tile;
+              promises.push(cell.tile.waitForTransitionEnd("transitionend"));
+            } else {
+              lastValidCell.tile = cell.tile;
+            }
+            cell.tile = null;
+          }
         }
       }
-    }
-  });
+      return promises;
+    })
+  );
+}
+
+function canMoveUp() {
+  return canMove(grid.cellsByColumn);
+}
+function canMoveDown() {
+  return canMove(grid.cellsByColumn.map((group) => group.reverse()));
+}
+function canMoveLeft() {
+  return canMove(grid.cellsByRow);
+}
+function canMoveRight() {
+  return canMove(grid.cellsByRow.map((group) => group.reverse()));
+}
+
+function canMove(cells) {
+  return cells.some((group) =>
+    group.some((cell, i) => {
+      if (i === 0) return false;
+      if (cell.tile === null) return false;
+      return group[i - 1].canAccept(cell.tile);
+    })
+  );
 }
