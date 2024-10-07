@@ -18,6 +18,27 @@ export class Grid {
     return this.#cells.filter((cell) => cell.tile === null);
   }
 
+  get cellsByColumn() {
+    return this.#cells.reduce((cellGrid, cell) => {
+      cellGrid[cell.x] = cellGrid[cell.x] || [];
+      cellGrid[cell.x][cell.y] = cell;
+      return cellGrid;
+    }, []);
+  }
+
+  get cellsByRow() {
+    let cellsIndex = 0;
+    const cellByRows = [];
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        if (!cellByRows[j]) cellByRows[j] = [];
+        cellByRows[j][i] = this.#cells[cellsIndex];
+        cellsIndex++;
+      }
+    }
+    return cellByRows;
+  }
+
   get randomEmptyCell() {
     const randomIndex = Math.floor(Math.random() * this.#emptyCells.length);
     return this.#emptyCells[randomIndex];
@@ -35,6 +56,14 @@ class Cell {
     this.#x = x;
     this.#y = y;
     this.#tile = null;
+  }
+
+  get x() {
+    return this.#x;
+  }
+
+  get y() {
+    return this.#y;
   }
 
   get tile() {

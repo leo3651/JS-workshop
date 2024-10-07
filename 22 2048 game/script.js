@@ -5,7 +5,6 @@ const gameBoardEl = document.querySelector(".game-board");
 
 const grid = new Grid(gameBoardEl);
 
-console.log(grid.randomEmptyCell);
 console.log(grid);
 
 grid.randomEmptyCell.tile = new Tile(gameBoardEl);
@@ -18,7 +17,6 @@ function setupInput() {
 }
 
 function handleInput(e) {
-  console.log(e.key);
   switch (e.key) {
     case "ArrowUp":
       moveUp();
@@ -45,9 +43,13 @@ function handleInput(e) {
 }
 
 function moveUp() {
+  console.log(grid.cellsByColumn);
+  console.log(grid.cellsByRow);
   slideTiles(grid.cellsByColumn);
 }
 
 function moveDown() {}
 function moveRight() {}
 function moveLeft() {}
+
+function slideTiles() {}
