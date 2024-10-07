@@ -34,4 +34,12 @@ export class Tile {
     this.#y = value;
     this.#tileElement.style.setProperty("--y", value);
   }
+
+  get value() {
+    return this.#value;
+  }
+
+  remove() {
+    this.#tileElement.remove();
+  }
 }

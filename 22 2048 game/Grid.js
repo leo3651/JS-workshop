@@ -14,6 +14,10 @@ export class Grid {
     this.#cells = fillGameBoardWithCells(gridEl);
   }
 
+  get cells() {
+    return this.#cells;
+  }
+
   get #emptyCells() {
     return this.#cells.filter((cell) => cell.tile === null);
   }
@@ -57,6 +61,7 @@ class Cell {
     this.#x = x;
     this.#y = y;
     this.#tile = null;
+    this.#mergeTile = null;
   }
 
   get x() {

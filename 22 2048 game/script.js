@@ -39,17 +39,31 @@ function handleInput(e) {
       break;
   }
 
+  grid.cells.forEach((cell) => {
+    if (cell.mergeTile !== null) {
+      cell.tile.value *= 2;
+      cell.mergeTile.remove();
+      cell.mergeTile = null;
+    }
+  });
+
+  grid.randomEmptyCell.tile = new Tile(gameBoardEl);
+
   setupInput();
 }
 
 function moveUp() {
-  console.log(grid.cellsByColumn);
-  return slideTiles(grid.cellsByColumn);
+  slideTiles(grid.cellsByColumn);
 }
-
-function moveDown() {}
-function moveRight() {}
-function moveLeft() {}
+function moveDown() {
+  slideTiles(grid.cellsByColumn.map((group) => group.reverse()));
+}
+function moveRight() {
+  slideTiles(grid.cellsByRow.map((group) => group.reverse()));
+}
+function moveLeft() {
+  slideTiles(grid.cellsByRow);
+}
 
 function slideTiles(cells) {
   console.log(cells);
@@ -64,8 +78,8 @@ function slideTiles(cells) {
           lastValidCell = cellAbove;
         }
 
-        if (lastValidCell != null) {
-          if (lastValidCell.tile != null) {
+        if (lastValidCell !== null) {
+          if (lastValidCell.tile !== null) {
             lastValidCell.mergeTile = cell.tile;
           } else {
             lastValidCell.tile = cell.tile;
