@@ -20,6 +20,7 @@
 body {
   background: radial-gradient(#9d5900, #3d2200);
   min-height: 100vh;
+  cursor: url("Assets/Cursors/Ghost.cur"), auto;
 }
 
 .title {
@@ -85,15 +86,34 @@ body {
   background-color: black;
   border-color: #ff6d00;
 }
-.card-back:hover .spider {
-  transform: translateY(0);
-}
 .card:hover .cob-web {
   height: 45px;
   width: 45px;
 }
+.card-back:hover .spider {
+  transform: translateY(0);
+}
 .card-front:hover .card-value {
   transform: scale(1.1);
+}
+.card:hover {
+  cursor: url("Assets/Cursors/GhostHover.cur"), auto;
+}
+.card.matched .card-value {
+  animation: dance 1s linear 500ms infinite;
+}
+
+@keyframes dance {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
 }
 
 .cob-web {
@@ -132,4 +152,64 @@ body {
 .card-value {
   height: 45px;
   transition: all 100ms ease-in-out;
+}
+
+.overlay-text {
+  text-align: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: #ff6d00;
+  font-family: Creepy, serif;
+  font-size: 10rem;
+}
+.overlay-text.show {
+  display: flex;
+  flex-direction: column;
+  animation: overlay-grow 500ms forwards;
+}
+.overlay-text-small {
+  font-size: 3rem;
+  animation: small-overlay-grow 500ms;
+}
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+@keyframes small-overlay-grow {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+  }
+
+  .game-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .overlay-text {
+    font-size: 6rem;
+  }
+
+  .overlay-text-small {
+    font-size: 2rem;
+  }
 }
