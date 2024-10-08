@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "Creepy";
+  src: url("Assets/Fonts/Creepy.woff") format("woff"),
+    url("Assets/Fonts/Creepy.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lunacy";
+  src: url("Assets/Fonts/Lunacy.woff") format("woff"),
+    url("Assets/Fonts/Lunacy.woff2") format("woff2");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(#9d5900, #3d2200);
+  min-height: 100vh;
+}
+
+.title {
+  color: #ff6d00;
+  font-family: Creepy, serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 6rem;
+}
+
+.game-info-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+}
+.game-info {
+  color: #ffbb89;
+  font-size: 4rem;
+  font-family: Lunacy, serif;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 10px;
+  justify-content: center;
+  margin: 50px;
+  perspective: 500px;
+}
+
+.card {
+  height: 155px;
+  width: 105px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.card-face {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  transition: transform 500ms ease-in-out;
+}
+.card:hover .card-front {
+  transform: rotateY(0deg);
+}
+.card:hover .card-back {
+  transform: rotateY(-180deg);
+}
+.card-front {
+  transform: rotateY(180deg);
+  background-color: #ffbb89;
+  border-color: #333;
+}
+.card-back {
+  background-color: black;
+  border-color: #ff6d00;
+}
+.card-back:hover .spider {
+  transform: translateY(0);
+}
+.card:hover .cob-web {
+  height: 45px;
+  width: 45px;
+}
+.card-front:hover .card-value {
+  transform: scale(1.1);
+}
+
+.cob-web {
+  position: absolute;
+  height: 37px;
+  width: 37px;
+  transition: all 100ms ease-in-out;
+}
+.cob-web-top-left {
+  top: 0;
+  left: 0;
+  transform: rotate(270deg);
+}
+.cob-web-top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(0deg);
+}
+.cob-web-bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotate(180deg);
+}
+.cob-web-bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.spider {
+  align-self: flex-start;
+  transform: translateY(-10px);
+  transition: transform 100ms ease-in-out;
+  height: 105px;
+}
+.card-value {
+  height: 45px;
+  transition: all 100ms ease-in-out;
+}
