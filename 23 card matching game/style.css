@@ -17,9 +17,12 @@
   padding: 0;
 }
 
+html {
+  min-height: 100vh;
+}
+
 body {
   background: radial-gradient(#9d5900, #3d2200);
-  min-height: 100vh;
   cursor: url("Assets/Cursors/Ghost.cur"), auto;
 }
 
@@ -29,6 +32,7 @@ body {
   font-weight: normal;
   text-align: center;
   font-size: 6rem;
+  margin-top: 20px;
 }
 
 .game-info-container {
@@ -191,6 +195,12 @@ body {
   0% {
     background-color: rgba(0, 0, 0, 0);
     font-size: 0;
+  }
+}
+
+@media (min-width: 1035px) {
+  .game-container {
+    grid-template-columns: repeat(8, auto);
   }
 }
 
