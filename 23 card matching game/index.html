@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="style.css" rel="stylesheet" />
+    <script src="script.js" type="module"></script>
     <title>Card matching game</title>
   </head>
   <body>
-    <div id="click-to-start" class="overlay-text">Click to Start</div>
+    <div id="click-to-start" class="overlay-text show">Click to Start</div>
     <div id="game-over-text" class="overlay-text">
       GAME OVER <span class="overlay-text-small">Click to Restart</span>
     </div>
-    <div id="victory-over-text" class="overlay-text">
+    <div id="victory-text" class="overlay-text">
       YOU WIN <span class="overlay-text-small">Click to Restart</span>
     </div>
     <h1 class="title">Mix-Or-Match</h1>
     <div class="game-container">
       <div class="game-info-container">
-        <div class="game-info">Time <span class="time">100</span></div>
-        <div class="game-info">Flips <span class="flips">8</span></div>
+        <div class="game-info">Time <span class="time"></span></div>
+        <div class="game-info">Flips <span class="flips"></span></div>
       </div>
 
       <div class="card">
