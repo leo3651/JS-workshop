@@ -1,4 +1,4 @@
-const RANDOM_QUOTE = "https://api.quotable.io/random";
+const RANDOM_QUOTE = "https://dummyjson.com/quotes/1";
 const quoteEl = document.getElementById("quote");
 const textArea = document.getElementById("textArea");
 const timer = document.getElementById("timer");
@@ -33,7 +33,7 @@ textArea.addEventListener("input", () => {
 function getRandomQuote() {
   return fetch(RANDOM_QUOTE)
     .then((res) => res.json())
-    .then(({ content }) => content);
+    .then(({ quote }) => quote);
 }
 
 async function renderNewQuote() {
