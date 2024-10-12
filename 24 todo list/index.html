@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js" defer></script>
     <title>Todo list</title>
     <link
       href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700,900&display=swap"
@@ -18,12 +19,12 @@
     <div class="all-lists">
       <h2 class="all-lists-title">My List</h2>
       <ul class="lists">
-        <li><span class="lists-item active">Programming</span></li>
+        <!-- <li><span class="lists-item active">Programming</span></li>
         <li><span class="lists-item">Work</span></li>
-        <li><span class="lists-item">Grocery</span></li>
+        <li><span class="lists-item">Grocery</span></li> -->
       </ul>
 
-      <form class="add-new-task-form">
+      <form class="add-new-list-form">
         <input type="text" class="new-list" placeholder="new list name" />
         <div class="underline"></div>
         <button class="add-list-btn">+</button>
@@ -68,8 +69,10 @@
         </div>
 
         <div class="delete-stuff">
-          <button class="btn delete">Clear completed tasks</button>
-          <button class="btn delete">Delete list</button>
+          <button data-delete-task class="btn delete">
+            Clear completed tasks
+          </button>
+          <button data-delete-list class="btn delete">Delete list</button>
         </div>
       </div>
     </div>
