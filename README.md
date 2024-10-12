@@ -4,4 +4,4 @@
 
 ### JS workshop repository
 
-#### JS workshop repository;
+#### JS workshop repository:
