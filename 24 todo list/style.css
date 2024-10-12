@@ -50,6 +50,8 @@ body {
   --spacer: 3rem;
 
   grid-area: active-list-tasks;
+}
+.todo-list > * {
   background: var(--color-light);
   color: var(--color-dark);
 }
@@ -251,8 +253,7 @@ form {
   width: 100%;
   position: absolute;
   justify-content: space-evenly;
-  margin-top: 2rem;
-  bottom: -6%;
+  bottom: -15%;
   left: 0%;
 }
 .btn.delete {

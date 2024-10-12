@@ -34,34 +34,22 @@
     <!--  -->
     <div class="todo-list">
       <div class="todo-header">
-        <h2 class="todo-list-title">Programming</h2>
-        <p class="tasks-count">3 tasks remaining</p>
+        <h2 class="todo-list-title"></h2>
+        <p class="tasks-count"></p>
       </div>
 
       <div class="todo-body">
         <div class="tasks">
-          <div class="task">
+          <!-- <div class="task">
             <input id="task1" type="checkbox" value="Write code" />
             <label for="task1"
               ><span class="custom-checkbox"></span>Coding</label
             >
-          </div>
-          <div class="task">
-            <input id="task2" type="checkbox" value="Write code" />
-            <label for="task2"
-              ><span class="custom-checkbox"></span>Study</label
-            >
-          </div>
-          <div class="task">
-            <input id="task3" type="checkbox" value="Write code" />
-            <label for="task3"
-              ><span class="custom-checkbox"></span>Repeat</label
-            >
-          </div>
+          </div> -->
         </div>
 
         <div class="add-new-task">
-          <form>
+          <form class="add-new-task-form">
             <input type="text" class="new-task" placeholder="enter new task" />
             <div class="underline"></div>
             <button class="add-task-btn">+</button>
@@ -69,7 +57,7 @@
         </div>
 
         <div class="delete-stuff">
-          <button data-delete-task class="btn delete">
+          <button data-delete-tasks class="btn delete">
             Clear completed tasks
           </button>
           <button data-delete-list class="btn delete">Delete list</button>
